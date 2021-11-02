@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/resources']
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+tasks.register('intTest', Test) {
+    testClassesDirs = sourceSets.intTest.output.classesDirs
+    classpath = sourceSets.intTest.runtimeClasspath
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation 'junit:junit:4.13.1'
+}
