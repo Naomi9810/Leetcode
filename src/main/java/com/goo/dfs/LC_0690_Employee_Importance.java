@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Time Complexity O(N) - N is the # of employee, need to go through each
+ * Space Complexity O(N) - N is the # of employee, getImportanceHelper call times
+
+ */
 public class LC_0690_Employee_Importance {
   public int getImportance(List<Employee> employees, int id) {
     // build a map
