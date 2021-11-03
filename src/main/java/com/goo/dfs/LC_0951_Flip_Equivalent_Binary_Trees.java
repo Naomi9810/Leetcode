@@ -1,21 +1,23 @@
 package com.goo.dfs;
 
 /**
- * Time Complexity O(min(N1, N2)) - N is the # of TreeNode, need to go through each.
- * Space Complexity O(min(N1, N2)) - N is the # of TreeNode, need to go through each.
- * Two cases: flip or not flip
+ * Time Complexity O(min(N1, N2)) - N is the # of TreeNode, need to go through each
+ * <p>
+ * Space Complexity O(min(N1, N2)) - N is the # of TreeNode, need to go through each
+ * <p>
+ * Hints: Two cases: flip or not flip
  */
 public class LC_0951_Flip_Equivalent_Binary_Trees {
 
   public boolean flipEquiv(TreeNode root1, TreeNode root2) {
     // base case:
-    if(root1 == null && root2 == null){
+    if (root1 == null && root2 == null) {
       return true;
     }
-    if(root1 == null || root2 == null){
+    if (root1 == null || root2 == null) {
       return false;
     }
-    if(root1.val != root2.val){
+    if (root1.val != root2.val) {
       return false;
     }
 

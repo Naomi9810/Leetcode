@@ -2,49 +2,52 @@ package com.goo.dfs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
+/**
+ * Time Complexity: O(N^2) N is the # of TreeNode, for each TreeNode we need to build the postOrder
+ * Improvement is to replace the String with Integer, use another map to store to O(N^2)
+ * <p>
+ * Space Complexity: O(N) - N is the # of TreeNode
+ * <p>
+ * Hints: post order Traverse, Hashmap stores order - frequency only add to res when frequency is
+ * 2.
+ *
+ *    A
+ *   / \
+ *  B  C
+ *    / \
+ *   D   E
+ *
+ *    C
+ *   / \
+ *   A  E
+ *  / \
+ * B  D
+ *
+ * same inOrder traverse string: B-A-D-C-E
+ * preOrder and postOrder gives unique Str
+ */
 public class LC_0652_Find_Duplicate_Subtrees {
-
   public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
-    // first traverse the whole tree to build the map and find the same value treeNode
-    Map<Integer, TreeNode> treeNodeMap = new HashMap<>();
-    Queue<TreeNode> queue = new LinkedList<>();
+    Map<String, Integer> countMap = new HashMap<>();
     List<TreeNode> res = new ArrayList<>();
-    queue.add(root);
-    while (!queue.isEmpty()) {
-      TreeNode cur = queue.poll();
-      if (treeNodeMap.containsKey(cur.val) && isDupTrees(cur, treeNodeMap.get(cur.val))) {
-        res.add(cur);
-        treeNodeMap.remove(cur.val);
-      } else {
-        treeNodeMap.put(cur.val, cur);
-      }
-      if (cur.left != null) {
-        queue.add(cur.left);
-      }
-      if (cur.right != null) {
-        queue.add(cur.right);
-      }
-    }
+    postOrder(root, countMap, res);
     return res;
   }
 
-  private boolean isDupTrees(TreeNode root1, TreeNode root2) {
-    if (root1 == null && root2 == null) {
-      return true;
+  private String postOrder(TreeNode node, Map<String, Integer> map, List<TreeNode> res) {
+    if (node == null) {
+      return "N";
     }
-    if (root1 == null || root2 == null) {
-      return false;
+    String postOrderStr =
+        node.val + "," + postOrder(node.left, map, res) + "," + postOrder(node.right, map, res);
+    map.put(postOrderStr, map.getOrDefault(postOrderStr, 0) + 1); // count the frequency
+    if (map.get(postOrderStr) == 2) {
+      // only add it when this is 2
+      res.add(node);
     }
-    if (root1.val != root2.val) {
-      return false;
-    } else {
-      return isDupTrees(root1.left, root2.left) && isDupTrees(root1.right, root2.right);
-    }
+    return postOrderStr;
   }
-
 }

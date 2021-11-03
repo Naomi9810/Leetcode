@@ -6,14 +6,15 @@ import java.util.Map;
 
 /**
  * Time Complexity O(N) - N is the # of employee, need to go through each
+ * <p>
  * Space Complexity O(N) - N is the # of employee, getImportanceHelper call times
-
  */
 public class LC_0690_Employee_Importance {
+
   public int getImportance(List<Employee> employees, int id) {
     // build a map
     Map<Integer, Employee> idMap = new HashMap<Integer, Employee>();
-    for (Employee e: employees) {
+    for (Employee e : employees) {
       idMap.put(e.id, e);
     }
     return getImportanceHelper(idMap, id);
@@ -25,8 +26,8 @@ public class LC_0690_Employee_Importance {
     if (e.subordinates.isEmpty()) {
       return e.importance;
     }
-    for (int sub: e.subordinates) {
-        subImportance += getImportanceHelper(idMap, sub);
+    for (int sub : e.subordinates) {
+      subImportance += getImportanceHelper(idMap, sub);
     }
     return e.importance + subImportance;
   }
