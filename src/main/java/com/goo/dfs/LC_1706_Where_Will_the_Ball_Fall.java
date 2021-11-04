@@ -8,10 +8,11 @@ package com.goo.dfs;
  * Hints:
  * <p> 1. encounter the triangle shape will get stuck </>
  * <p> 2. what form a triangle shape:
- * grid[i][j] = 1 && grid [i][j+1] = -1 grid[i][j] = -1 && grid[i][j-1] = 1 if not a triangle
- * grid[i][j] = 1 pass, then i++, j++ -  go right side
- * grid[i][j] = -1 pass, then i++, j-1 - go left side
- * <p>
+ * <p> grid[i][j] = 1 && grid [i][j+1] = -1
+ * <p> grid[i][j] = -1 && grid[i][j-1] = 1
+ * <p> if not a triangle：
+ * <p> grid[i][j] = 1 pass, then i++, j++ -  go right side
+ * <p> grid[i][j] = -1 pass, then i++, j-1 - go left side
  * </>
  */
 public class LC_1706_Where_Will_the_Ball_Fall {
