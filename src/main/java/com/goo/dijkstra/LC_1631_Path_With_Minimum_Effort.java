@@ -1,4 +1,4 @@
-package com.goo.dfs;
+package com.goo.dijkstra;
 
 import java.util.Arrays;
 import java.util.Comparator;
