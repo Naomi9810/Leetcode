@@ -43,10 +43,10 @@ public class LC_1631_Path_With_Minimum_Effort {
         return cost; // reach the target point
       }
 
-      int[] dir = new int[]{0, 1, 0, -1, 0};
-      for (int d = 0; d < 4; d++) {
-        int i2 = i + dir[d];
-        int j2 = j + dir[d + 1];
+      int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+      for (int[] dir : directions) {
+        int i2 = i + dir[0];
+        int j2 = j + dir[1];
         if (i2 >= 0 && i2 < row && j2 >= 0 && j2 < col) {
           int cost2 = Math.max(cost,
               Math.abs(heights[i2][j2] - heights[i][j])); // the cost to go to (i2, j2)
