@@ -1,21 +1,19 @@
-package com.goo.dfs;
+package com.goo.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 
 /**
- * Time Complexity: O(N) .
+ * Time Complexity: O(N) N is the grid size, first DFS then BFS
  * <p>
- * Space Complexity: O(N) - N is the # of the manager count
+ * Space Complexity: O(M) - N is grid size
  * <p>
  * Hints:
  * <p> 1. First use DFS to reveal the target and explore the board, so we got the base
  * <p> 2. Second use BFS to find the shortest path, use {m, m} as the target point
- * <p> 3. Base board should be 2m+1
+ * <p> 3. Base board should be 2*m+1
  */
-
-
 public class LC_1778_Shortest_Path_in_a_Hidden_Grid {
 
   private static final int[][] DIR = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};

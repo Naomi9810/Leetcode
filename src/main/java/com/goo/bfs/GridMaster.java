@@ -1,4 +1,4 @@
-package com.goo.dfs;
+package com.goo.bfs;
 
 public class GridMaster {
 
