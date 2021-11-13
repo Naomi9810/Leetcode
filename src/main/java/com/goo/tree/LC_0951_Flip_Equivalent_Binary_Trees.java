@@ -1,4 +1,6 @@
-package com.goo.dfs;
+package com.goo.tree;
+
+import com.goo.tree.TreeNode;
 
 /**
  * Time Complexity O(min(N1, N2)) - N is the # of TreeNode, need to go through each

@@ -1,9 +1,6 @@
-package com.goo.dfs;
+package com.goo.tree;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import com.goo.tree.TreeNode;
 
 /**
  * Order not has to from parent to child, reverse direction is so -1 is accepted

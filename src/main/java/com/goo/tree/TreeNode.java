@@ -1,4 +1,4 @@
-package com.goo.dfs;
+package com.goo.tree;
 
 /**
  * TreeNode for LC_1110, LC_951

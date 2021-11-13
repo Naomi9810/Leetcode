@@ -1,4 +1,6 @@
-package com.goo.dfs;
+package com.goo.tree;
+
+import com.goo.tree.TreeNode;
 
 /**
  * Order has to from parent to child

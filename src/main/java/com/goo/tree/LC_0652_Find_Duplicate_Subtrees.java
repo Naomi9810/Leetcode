@@ -1,5 +1,6 @@
-package com.goo.dfs;
+package com.goo.tree;
 
+import com.goo.tree.TreeNode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
