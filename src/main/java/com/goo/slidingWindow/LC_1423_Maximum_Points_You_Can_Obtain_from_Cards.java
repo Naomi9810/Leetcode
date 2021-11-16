@@ -6,7 +6,7 @@ package com.goo.slidingWindow;
  * Space Complexity:
  * <p>
  * Hints:
- * <p> 1.
+ * <p> 1. pay attention to the remove, add order
  * <p> 2.
  * <p> 3.
  */
