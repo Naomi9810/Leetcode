@@ -24,7 +24,7 @@ public class LC_1483_Kth_Ancestor_of_a_Tree_Node {
   Map<Integer, List<Integer>> parentToNode = new HashMap<>();
   Integer[][] mem;
 
-  public TreeAncestor(int n, int[] parent) {
+  public void TreeAncestor(int n, int[] parent) {
     this.mem = new Integer[n][30];
     for (int i = 0; i < n; i++) {
       int parentNode = parent[i];

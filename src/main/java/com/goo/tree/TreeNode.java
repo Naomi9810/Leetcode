@@ -1,7 +1,7 @@
 package com.goo.tree;
 
 /**
- * TreeNode for LC_1110, LC_951
+ * TreeNode structure.
  */
 public class TreeNode {
 
