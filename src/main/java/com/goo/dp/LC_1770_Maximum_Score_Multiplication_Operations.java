@@ -6,9 +6,11 @@ package com.goo.dp;
  * Space Complexity:
  * <p>
  * Hints:
- * <p> 1.
- * <p> 2.
- * <p> 3.
+ * <p> 1. https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations
+ * /discuss/1075469/JavaC%2B%2BPython-3-Top-Down-DP-O(m2)-Clean-and-Concise
+ * <p> 2. dp problem. In operation ith, we can choose to pick the left or the right side of nums
+ * <p> 3. k is the number we need to pick, which == the multipliers.length
+ * dp means
  */
 public class LC_1770_Maximum_Score_Multiplication_Operations {
 
@@ -26,7 +28,7 @@ public class LC_1770_Maximum_Score_Multiplication_Operations {
   }
 
   private int dp(int left, int i) {
-    // left idx, i is the ith element we picked
+    // left idx, i is the ith element we picked, start from 0
     if (i == k) {
       return 0; // picked enough k elements
     }
@@ -35,6 +37,7 @@ public class LC_1770_Maximum_Score_Multiplication_Operations {
     }
     int pickLeft = dp(left + 1, i + 1) + nums[left] * muls[i];
     int pickRight = dp(left, i + 1) + nums[len - 1 - (i - left)] * muls[i];
-    return mem[left][i] = Math.max(pickLeft, pickRight);
+    mem[left][i] = Math.max(pickLeft, pickRight);
+    return mem[left][i];
   }
 }
