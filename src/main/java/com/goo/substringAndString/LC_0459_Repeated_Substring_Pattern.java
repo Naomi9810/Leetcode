@@ -1,4 +1,4 @@
-package com.goo.substring;
+package com.goo.substringAndString;
 
 /**
  * Time Complexity:
