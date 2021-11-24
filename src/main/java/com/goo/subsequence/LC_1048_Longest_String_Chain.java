@@ -1,11 +1,7 @@
 package com.goo.subsequence;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Time Complexity:
@@ -20,51 +16,23 @@ import java.util.Set;
 public class LC_1048_Longest_String_Chain {
 
   public int longestStrChain(String[] words) {
-    Map<String, Integer> wordMap = new HashMap<>();
+    if (words == null || words.length == 0) {
+      return 0;
+    }
+    int res = 0;
+    Arrays.sort(words, (a, b) -> (a.length() - b.length())); // sort by length
+    HashMap<String, Integer> map = new HashMap<>(); // word : its longest chain
     for (String word : words) {
-      wordMap.putIfAbsent(word, 0);
-    }
-    int max = 1;
-    for (String word : words) {
-      max = Math.max(max, getChainLen(wordMap, word));
-    }
-    return max;
-  }
-
-  private int getChainLen(Map<String, Integer> wordMap, String word) {
-    // try remove one letter from the given word and see if we can find a match in wordSet:
-    if (wordMap.containsKey(word) && wordMap.get(word) != 0) {
-      return wordMap.get(word);
-    }
-    boolean match = true;
-    while (match) {
-      for (String newWord : deleteOneChar(word)) {
-        if (wordMap.containsKey(newWord)) {
-          wordMap.put(word, wordMap.get(word) +1);
-          return wordMap.get(word);
+      map.putIfAbsent(word, 1);
+      for (int i = 0; i < word.length(); i++) {
+        StringBuilder sb = new StringBuilder(word);
+        String next = sb.deleteCharAt(i).toString(); // remove one char to form new word
+        if (map.containsKey(next) && map.get(next) + 1 > map.get(word)) {
+          // next word in the words, and the length is longer
+          map.put(word, map.get(next) + 1);
         }
       }
-      match = false;
-    }
-    wordMap.put(word, 1);
-    return 1;
-  }
-
-  private Set<String> deleteOneChar(String word) {
-    // generate list of string by delete one char
-    Set<String> res = new HashSet<>();
-    if (word.length() <= 1) {
-      return res;
-    }
-    StringBuffer sb = new StringBuffer();
-    for (int i = 0; i < word.length(); i++) {
-      for (int j = 0; j < word.length(); j++) {
-        if (i != j) {
-          sb.append(word.charAt(j));
-        }
-      }
-      res.add(sb.toString());
-      sb = new StringBuffer();
+      res = Math.max(res, map.get(word));
     }
     return res;
   }
