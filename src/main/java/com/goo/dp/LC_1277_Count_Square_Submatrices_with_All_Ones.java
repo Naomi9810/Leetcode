@@ -2,9 +2,9 @@ package com.goo.dp;
 
 /**
  * Time Complexity:
- * <p>
+ * <p> O(M*N) M is row, N is col
  * Space Complexity:
- * <p>
+ * <p> O(1) reuse the matrix itself
  * Hints:
  * <p> 1.dp[i][j] means the size of the biggest square with A[i][j] as bottom-right corner.
  * <p> dp[i][j] also means the number of squares with A[i][j] as bottom-right corner.
