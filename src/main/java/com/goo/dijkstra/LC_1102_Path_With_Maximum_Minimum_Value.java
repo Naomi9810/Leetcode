@@ -1,6 +1,5 @@
 package com.goo.dijkstra;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
