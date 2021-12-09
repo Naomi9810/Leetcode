@@ -13,4 +13,6 @@
 package com.goo.dp;
 
 public class LC_0085_Maximal_Rectangle {
+    public int maximalRectangle(char[][] matrix) {
+    }
 }
