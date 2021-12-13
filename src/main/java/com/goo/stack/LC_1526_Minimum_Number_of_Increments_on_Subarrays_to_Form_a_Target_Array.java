@@ -16,8 +16,8 @@ package com.goo.stack;
 public class LC_1526_Minimum_Number_of_Increments_on_Subarrays_to_Form_a_Target_Array {
     public int minNumberOperations(int[] target) {
         int res = 0, pre = 0;
-        for (int n: target) {
-            res += Math.max(n- pre, 0);
+        for (int n : target) {
+            res += Math.max(n - pre, 0);
             pre = n;
         }
         return res;
