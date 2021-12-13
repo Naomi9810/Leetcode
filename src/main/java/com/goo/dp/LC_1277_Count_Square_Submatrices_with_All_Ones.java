@@ -8,8 +8,10 @@ package com.goo.dp;
  * Hints:
  * <p> 1.dp[i][j] means the size of the biggest square with A[i][j] as bottom-right corner.
  * <p> dp[i][j] also means the number of squares with A[i][j] as bottom-right corner.
- * <p> 2.
- * <p> 3.
+ * <p> 2. if i == 0 || j == 0 , matrix[i][j] = res
+ * <p> 3. 0 1      1           1
+ * <p>    0 1 dp[i-1][j-1] dp[i][j-1]
+ * <p>    0 1 dp[i-1][j]   dp[i][j]
  */
 public class LC_1277_Count_Square_Submatrices_with_All_Ones {
 

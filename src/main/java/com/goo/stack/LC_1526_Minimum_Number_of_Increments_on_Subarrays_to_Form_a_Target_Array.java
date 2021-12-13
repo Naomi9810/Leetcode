@@ -5,8 +5,8 @@
  * Space Complexity:
  * <p> O(1)
  * Hints:
- * <p> 1. Whenever the current element a is bigger than the previous element,
- * we need at lease a - pre operations to make this difference.
+ * <p> 1. Whenever the current element is bigger than the previous element,
+ * we need at lease a - pre operations to make this difference - greedy
  * <p> 2.
  * <p> 3.
  */

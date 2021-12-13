@@ -6,9 +6,9 @@ package com.goo.substringAndString;
  * Space Complexity:
  * <p>
  * Hints:
- * <p> 1.
- * <p> 2.
- * <p> 3.
+ * <p> 1. count the unique from left
+ * <p> 2. count the unique from right
+ * <p> 3. res++ when left Uni == right Uni
  */
 public class LC_1525_Number_of_Good_Ways_to_Split_a_String {
 
