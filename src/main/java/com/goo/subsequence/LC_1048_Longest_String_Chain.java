@@ -9,9 +9,9 @@ import java.util.HashMap;
  * Space Complexity:
  * <p>
  * Hints:
- * <p> 1. longest word chain,
- * <p> 2.  the start from the longest by deleting the letter and see if we can find it in the set?
- * <p> 3.
+ * <p> 1. sort
+ * <p> 2. start from the longest, remove one char to form new word
+ * <p> 3. use hashmap to track the longest
  */
 public class LC_1048_Longest_String_Chain {
 
