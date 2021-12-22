@@ -1,9 +1,9 @@
 /**
  * Created by Sijia on 12/20/21
  * Time Complexity:
- * <p>
+ * <p> O(N)
  * Space Complexity:
- * <p>
+ * <p> O(1)
  * Hints:
  * <p> 1.  once we meet the negative we swap the positive and negative, when swap twice, then negative -> positive
  * <p> 2. always calculate the positive len, because it keep track of all the element seen so far
