@@ -5,9 +5,13 @@
  * Space Complexity:
  * <p>
  * Hints:
- * <p> 1.
- * <p> 2.
- * <p> 3.
+ * <p> 买卖股票系列总结
+ * <p> 1 - one time buy+sell->  find the pre min, then find a max
+ * <p> II.- unlimited buy+sell -> greedy, add all the profits
+ * <P> III. - only 2 times buy+sell -> same as 1. but with 2 variable buy1, buy2, sell1, sell2
+ * <P> IV. - only k times buy+sell -> buy[i][k] sell[i][k]
+ * <P> with cool down  -> buy[], sell[]
+ * <P> with fee  -> buy[], sell[]
  */
 
 package com.goo.dp;
