@@ -18,39 +18,39 @@ import java.util.LinkedList;
  */
 public class LC_1776_Car_Fleet_II {
 
-  public double[] getCollisionTimes(int[][] cars) {
-    int numOfCars = cars.length;
-    double[] res = new double[numOfCars];
-    Deque<Integer> stack = new LinkedList<>();
-    for (int i = numOfCars - 1; i >= 0; i--) {
-      // looking from the last car this is target-nearest car
-      res[i] = -1;
-      int position = cars[i][0];
-      int speed = cars[i][1];
-      while (stack.size() > 0) {
-        int pre = stack.peekLast();
-        int position2 = cars[pre][0];
-        int speed2 = cars[pre][1];
-        if (speed <= speed2
-            || (double) (position2 - position) / (speed - speed2) >= res[pre] && res[pre] > 0) {
-          // car2 can't catch the pre car, or cars2 will collide with car1 and car1 is already collide, remove pre car
-          stack.pollLast();
-          // poll any pre car which cur car can't catch up
-        } else {
-          break;
-        }
-      }
-      if(stack.size() > 0) {
-        // able to catch up and hit case:
-        int j = stack.peekLast();
-        int position2 = cars[j][0];
-        int speed2 = cars[j][1];
-        res[i] = (double) (position2 - position) / (speed - speed2);
-      }
-      stack.add(i); // put index in the stack
+    public double[] getCollisionTimes(int[][] cars) {
+        int numOfCars = cars.length;
+        double[] res = new double[numOfCars];
+        Deque<Integer> stack = new LinkedList<>();
+        for (int i = numOfCars - 1; i >= 0; i--) {
+            // looking from the last car this is target-nearest car
+            res[i] = -1;
+            int position = cars[i][0];
+            int speed = cars[i][1];
+            while (stack.size() > 0) {
+                int pre = stack.peekLast();
+                int position2 = cars[pre][0];
+                int speed2 = cars[pre][1];
+                if (speed <= speed2
+                        || (double) (position2 - position) / (speed - speed2) >= res[pre] && res[pre] > 0) {
+                    // car2 can't catch the pre car, or cars2 will collide with car1 and car1 is already collide, remove pre car
+                    stack.pollLast();
+                    // poll any pre car which cur car can't catch up
+                } else {
+                    break;
+                }
+            }
+            if (stack.size() > 0) {
+                // able to catch up and hit case:
+                int j = stack.peekLast();
+                int position2 = cars[j][0];
+                int speed2 = cars[j][1];
+                res[i] = (double) (position2 - position) / (speed - speed2);
+            }
+            stack.add(i); // put index in the stack
 
+        }
+        return res;
     }
-    return res;
-  }
 
 }
