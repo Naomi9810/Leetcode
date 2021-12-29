@@ -1,12 +1,11 @@
 /**
  * Created by Sijia on 12/28/21
- * Time Complexity:
- * <p>
- * Space Complexity:
- * <p>
+ * Time Complexity: O(N)
+ * Space Complexity: O(N)
  * Hints: first in first out, need to use a queue
- * <p> 1. which item should be considered, 比我当前值大的value， 没必要看比nums[i] 小的值
- * <p> 2. queue 的 First 永远是max
+ * <p> 1. which item should be considered, 比我当前值大的value， 没必要看比nums[i] 小的值， while keep 大值，加在后面，
+ * <p> 2. 计算，queue 的 First 永远是max
+ * <p> 3. Move window
  */
 
 package com.goo.slidingWindow;
@@ -25,12 +24,12 @@ public class LC_0239_Sliding_Window_Maximum {
             while (!idx.isEmpty() && nums[idx.peekLast()] <= nums[i]) { // 如果当前的值比top的值大， 一直remove
                 idx.removeLast();
             }
-            idx.addLast(i);
+            idx.addLast(i); // 每次都add在后面排队， 前面的idx就小
             // calculate the result
             if (i - k + 1 >= 0) {
                 res[i - k + 1] = nums[idx.peekFirst()];
             }
-            // move the window:
+            // move the window 下一次就不能include idx = i-k+1的值
             if (i - k + 1 >= idx.peekFirst()) {
                 idx.removeFirst(); // one time remove one
             }
