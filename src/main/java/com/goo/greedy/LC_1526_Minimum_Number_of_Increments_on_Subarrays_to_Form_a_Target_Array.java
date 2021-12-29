@@ -11,7 +11,7 @@
  * <p> 3.
  */
 
-package com.goo.stack;
+package com.goo.greedy;
 
 public class LC_1526_Minimum_Number_of_Increments_on_Subarrays_to_Form_a_Target_Array {
     public int minNumberOperations(int[] target) {

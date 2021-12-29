@@ -9,7 +9,7 @@
  * <p> 2. similar to 152, need to keep track of the max and min
  * <p> 3.
  * Case 1. The first is that the subarray take only a middle part, and we know how to find the max subarray sum.
- * Case2. The second is that the subarray take a part of head array and a part of tail array.
+ * Case 2. The second is that the subarray take a part of head array and a part of tail array.
  * We can transfer this case to the first one.
  * The maximum result equals to the total sum minus the minimum subarray sum.
  */

@@ -28,21 +28,21 @@ import java.util.Stack;
 
 public class LC_0084_Largest_Rectangle_in_Histogram {
     public int largestRectangleArea(int[] heights) {
+        if (heights == null || heights.length == 0) return 0;
         Stack<Integer> stack = new Stack<>(); // saves the idx
         int area, max = 0;
         int len = heights.length;
         for (int i = 0; i <= len; i++) {
-            int height = (i == len) ?  0: heights[i]; // i = len so we can pop everything out
+            int height = (i == len) ? 0 : heights[i]; // i = len so we can pop everything out
             while (!stack.isEmpty() && height < heights[stack.peek()]) {
                 // maintain an increasing stack, if current height equal or greater than the top height, then directly put
                 int top = stack.pop();
-                int start = stack.isEmpty()? 0:  stack.peek();
-                area = heights[top] * (i - start -1); //  max height * len
+                int start = stack.isEmpty() ? -1 : stack.peek(); // when stack is empty, width is i i-start - 1 = i start = -1
+                area = heights[top] * (i - start - 1); //  max height * len
                 max = Math.max(max, area);
             }
             stack.push(i);
         }
         return max;
-
     }
 }

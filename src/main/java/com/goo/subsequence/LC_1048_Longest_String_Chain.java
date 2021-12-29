@@ -19,7 +19,7 @@ public class LC_1048_Longest_String_Chain {
     if (words == null || words.length == 0) {
       return 0;
     }
-    int res = 0;
+    int max = 0;
     Arrays.sort(words, (a, b) -> (a.length() - b.length())); // sort by length
     HashMap<String, Integer> map = new HashMap<>(); // word : its longest chain
     for (String word : words) {
@@ -32,8 +32,8 @@ public class LC_1048_Longest_String_Chain {
           map.put(word, map.get(next) + 1);
         }
       }
-      res = Math.max(res, map.get(word));
+      max = Math.max(max, map.get(word));
     }
-    return res;
+    return max;
   }
 }
