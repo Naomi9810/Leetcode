@@ -19,16 +19,19 @@
 package com.goo.dp;
 
 public class LC_0552_Student_Attendance_Record_II {
+    static final long M = 1000000007;
     public int checkRecord(int n) {
-        long[] PorL = new long[n + 1]; //  valid reward with ending P or L, no A
-        long[] P = new long[n + 1]; //  valid reward with ending P, no A
-        PorL[0] = P[0] = 1;
-        PorL[1] = 2; P[1] = 1;
-
-        for (int i = 1; i <=n ;i++) {
-            P[i] = PorL[i-1]; // just appending P in the PorL
-            PorL[i] = (P[i] + P[i - 1] + P[i - 2]) % M; //P[i] end with P, P[i-1], end with one L(or PL), P[i-2], end with two L(or LL).
+        long[] f = new long[n <= 5 ? 6 : n + 1]; // only has P and L
+        f[0] = 1;
+        f[1] = 2;
+        f[2] = 4; // LL, PP, LP, PL
+        f[3] = 7; // 2*2*2 = 8 - 1 (LLL)
+        for (int i = 4; i <= n; i++)
+            f[i] = ((2 * f[i - 1]) % M + (M - f[i - 4])) % M;
+        long sum = f[n];
+        for (int i = 1; i <= n; i++) { //  insert A
+            sum += (f[i - 1] * f[n - i]) % M;
         }
-
+        return (int)(sum % M);
     }
 }
