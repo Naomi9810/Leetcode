@@ -24,8 +24,6 @@ public class LC_1376_Time_Needed_to_Inform_All_Employees {
       managerToIdx.get(manager[i]).add(i);
     }
     return calculateInformTime(headID, managerToIdx, informTime);
-
-
   }
 
   private int calculateInformTime(int manager, Map<Integer, List<Integer>> managerToIdx,
