@@ -4,8 +4,8 @@
  * <p>
  * Space Complexity:
  * <p>
- * Hints:
- * <p> 1.
+ * Hints: https://leetcode.com/problems/my-calendar-ii/discuss/109550/Simple-AC-by-TreeMap
+ * <p> 1. 计数法 start +1 end就-1 如果有重合 count 就会=2， 用treeMap所以 record都是ordered的 第三问一样的做法
  * <p> 2.
  * <p> 3.
  */
@@ -17,26 +17,26 @@ import java.util.TreeMap;
 
 public class LC_0731_My_Calendar_II {
 
-    TreeMap<Integer, Integer> calendar;
+    TreeMap<Integer, Integer> cal;
 
     public void MyCalendarTwo() {
-        calendar = new TreeMap<>();
+        cal = new TreeMap<>(); // ordered map
     }
 
     public boolean book(int start, int end) {
-        calendar.put(start, calendar.getOrDefault(start, 0) + 1);
-        calendar.put(end, calendar.getOrDefault(end, 0) - 1);
+        cal.put(start, cal.getOrDefault(start, 0) + 1);
+        cal.put(end, cal.getOrDefault(end, 0) - 1);
         int count = 0;
-        for (Map.Entry<Integer, Integer> entry : calendar.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : cal.entrySet()) {
             count += entry.getValue();
-            if (count > 2) {
-                calendar.put(start, map.get(start) - 1);
+            if (count > 2) { // Triple booking
+                cal.put(start, cal.get(start) - 1);
 //                if (calendar.get(start) == 0) {
 //                    calendar.remove(start);
 //                }
-                calendar.remove(start, 0);
-                calendar.put(end, map.get(end) + 1);
-                calendar.remove(end, 0);
+                cal.remove(start, 0);
+                cal.put(end, cal.get(end) + 1);
+                cal.remove(end, 0);
                 return false;
             }
         }

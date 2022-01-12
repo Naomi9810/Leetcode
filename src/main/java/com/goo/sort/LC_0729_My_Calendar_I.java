@@ -20,19 +20,19 @@ package com.goo.sort;
 import java.util.TreeMap;
 
 public class LC_0729_My_Calendar_I {
-    TreeMap<Integer, Integer> calendar;
+    TreeMap<Integer, Integer> cal;
 
     public void MyCalendar() {
-        calendar = new TreeMap<>();
+        cal = new TreeMap<>();
     }
 
     public boolean book(int start, int end) {
-        Integer pre = calendar.floorKey(start);
-        if (pre != null && calendar.get(pre) > start) return false;
-        Integer next = calendar.ceilingKey(start);
+        Integer pre = cal.floorKey(start);
+        if (pre != null && cal.get(pre) > start) return false;
+        Integer next = cal.ceilingKey(start);
         if (next != null && next < end) return false;
 
-        calendar.put(start, end);
+        cal.put(start, end);
         return true;
     }
 }
