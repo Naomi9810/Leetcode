@@ -6,7 +6,7 @@
  * <p>
  * Hints: dfs/ bfs or union find
  * <p> 1.  bfs 建立双向的graph 用set记录原有的direction 如果set里面没有 则res++
- * <p> 2.
+ * <p> 2.  pure set solution TLE
  * <p> 3.
  */
 
