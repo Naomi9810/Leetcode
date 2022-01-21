@@ -22,7 +22,7 @@ public class LC_1277_Count_Square_Submatrices_with_All_Ones {
     for (int i = 0; i < row; i++) {
       for (int j = 0; j < col; j++) {
         if (matrix [i][j] > 0 && i > 0 && j > 0) {
-          matrix[i][j] = Math.min(matrix[i-1][j-1], Math.min(matrix[i][j-1], matrix[i][j-1])) + 1;
+          matrix[i][j] = Math.min(matrix[i-1][j-1], Math.min(matrix[i-1][j], matrix[i][j-1])) + 1;
         }
         res += matrix[i][j];
       }
