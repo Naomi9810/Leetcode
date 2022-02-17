@@ -1,4 +1,4 @@
-package com.goo.sort;
+package com.goo.sortInterval;
 
 import java.util.Arrays;
 

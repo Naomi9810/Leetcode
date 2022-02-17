@@ -1,4 +1,4 @@
-package com.goo.math;
+package com.goo.design;
 
 /**
  * Master class.

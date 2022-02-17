@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.math;
+package com.goo.design;
 
 import java.util.ArrayList;
 import java.util.HashMap;

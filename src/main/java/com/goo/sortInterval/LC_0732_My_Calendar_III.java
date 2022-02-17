@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.sort;
+package com.goo.sortInterval;
 
 import java.util.Map;
 import java.util.TreeMap;
