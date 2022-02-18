@@ -4,7 +4,10 @@
  * <p>
  * Space Complexity:
  * <p>
- * Hints:
+ * Hints: https://leetcode.com/problems/my-calendar-iii/discuss/176950/C%2B%2B-Map-Solution-beats-95%2B
+ *
+ * 如果没有重叠 那么按照时间 treeMap 次序来算 就会 +1 -1 + 1- 1
+ * 一旦有重叠 那么 会出现 > 1 的 次数 因为有的interval 已经开始 中间出现的max 就是重叠最多的 也就是k's booking
  * <p> 1.
  * <p> 2.
  * <p> 3.
