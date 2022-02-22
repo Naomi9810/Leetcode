@@ -1,4 +1,4 @@
-package com.goo.math;
+package com.goo.kth;
 
 import java.util.ArrayList;
 import java.util.HashMap;

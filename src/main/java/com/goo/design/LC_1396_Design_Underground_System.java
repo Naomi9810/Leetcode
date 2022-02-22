@@ -21,7 +21,7 @@ public class LC_1396_Design_Underground_System {
     HashMap<String, Pair<Integer, Integer>> checkoutMap = new HashMap<>(); // Route - {TotalTime, Count}
 
 
-    public UndergroundSystem() {}
+    public void UndergroundSystem() {}
 
     public void checkIn(int id, String stationName, int t) {
         checkInMap.put(id, new Pair<>(stationName, t));

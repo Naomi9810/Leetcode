@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.greedy;
+package com.goo.sortInterval;
 
 import java.util.Arrays;
 
