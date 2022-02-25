@@ -28,12 +28,11 @@ public class LC_0056_Merge_Intervals {
                 pre = cur;
                 res.add(cur);
             } else {
-                // need to merge
+                // need to merge 用 int[] pre 来存 可以直接改 不用再拿出来
                 pre[1] = Math.max(pre[1], cur[1]);
-
             }
         }
 
-        return res.toArray(new int[res.size()][]);
+        return res.toArray(new int[res.size()][]); //
     }
 }

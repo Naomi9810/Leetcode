@@ -17,23 +17,34 @@ import java.util.*;
 
 public class LC_0015_3Sum {
     public List<List<Integer>> threeSum(int[] nums) {
-        if (nums == null || nums.length <= 2) return Collections.emptyList();
-        Set<List<Integer>> set = new HashSet<>(); // use set to remove the same triple
+        if (nums == null || nums.length == 0) {
+            return new ArrayList<>();
+        }
         Arrays.sort(nums);
-        for (int i = 0; i + 1 < nums.length - 1; i++) {
-            int j = i + 1;
-            int k = nums.length - 1;
-            while (j < k) {
-                int sum = nums[i] + nums[j] + nums[k];
-                if (sum == 0) {
-                    set.add(Arrays.asList(nums[i], nums[j++], nums[k--]));
-                } else if (sum > 0) {
-                    k--;
-                } else {
-                    j++;
-                }
+        List<List<Integer>> res = new ArrayList<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            if (i == 0 || nums[i - 1] != nums[i]) { // 第一次dedup
+                twoSum(nums, i, res);
             }
         }
-        return new ArrayList<>(set);
+        return res;
+    }
+
+    private void twoSum(int[] nums, int i, List<List<Integer>> res) {
+        int left = i + 1, right = nums.length - 1;
+        while (left < right) {
+            int sum = nums[i] + nums[left] + nums[right];
+            if (sum == 0) {
+                res.add(Arrays.asList(nums[i], nums[left++], nums[right--])); // don't forget to move forward
+                while (left < right && nums[left] == nums[left - 1]) {
+                    left++; // 第二次dedup
+                }
+            } else if (sum < 0) {
+                left++;
+            } else {
+                right--;
+            }
+        }
     }
 }

@@ -1,7 +1,8 @@
 /**
  * Created by Sijia on 2/21/22
  * Time Complexity:
- * <p>
+ * <p> NlogK heap
+ *     average quickSelect  worst case N^2
  * Space Complexity:
  * <p>
  * Hints:  https://leetcode.com/problems/k-closest-points-to-origin/discuss/220235/Java-Three-solutions-to-this-classical-K-th-problem.
@@ -11,6 +12,8 @@
  */
 
 package com.goo.kth;
+
+import java.util.Arrays;
 
 public class LC_0973_K_Closest_Points_to_Origin {
     public int[][] kClosest(int[][] points, int k) {

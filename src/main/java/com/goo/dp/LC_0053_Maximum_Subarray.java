@@ -17,14 +17,12 @@ package com.goo.dp;
 
 public class LC_0053_Maximum_Subarray {
     public int maxSubArray(int[] nums) {
-        int len = nums.length;
-        int[] dp = new int[len];
-        int max = dp[0] = nums[0];
-        for (int i = 1; i < len; i++) {
-           dp[i] = Math.max(dp[i-1] + nums[i], nums[i]);
-           if (dp[i] > max) {
-               max = dp[i];
-           }
+        int cur = nums[0];
+        int max = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            cur = Math.max(cur + nums[i], nums[i]);
+            max = Math.max(max, cur);
         }
         return max;
     }

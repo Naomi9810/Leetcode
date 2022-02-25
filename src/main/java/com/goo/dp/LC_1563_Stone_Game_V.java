@@ -14,6 +14,6 @@ package com.goo.dp;
 
 public class LC_1563_Stone_Game_V {
     public int stoneGameV(int[] stoneValue) {
-
+        return 0;
     }
 }

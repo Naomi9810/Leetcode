@@ -1,4 +1,4 @@
-/**
+/*
  * Created by Sijia on 2/17/22
  * Time Complexity:
  * <p>
@@ -26,7 +26,7 @@ public class LC_0003_Longest_Substring_Without_Repeating_Char {
             if (!set.contains(c)) {
                 set.add(c);
                 res = Math.max(res, set.size()); // size 就是长度
-                j++;
+                j++; // 只有符合条件才往前move
             } else {
                 // 不存idx 一直删除直到再次满足条件为止
                 set.remove(s.charAt(i++));
