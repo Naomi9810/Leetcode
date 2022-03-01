@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.kth;
+package com.goo.kthHeap;
 
 import com.goo.linkedList.ListNode;
 

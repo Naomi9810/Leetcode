@@ -5,10 +5,10 @@ package com.goo.tree;
  */
 public class TreeNode {
 
-  int val;
-  TreeNode left;
-  TreeNode right;
-  TreeNode parent;
+  public int val;
+  public TreeNode left;
+  public TreeNode right;
+  public TreeNode parent;
 
   TreeNode() {
   }

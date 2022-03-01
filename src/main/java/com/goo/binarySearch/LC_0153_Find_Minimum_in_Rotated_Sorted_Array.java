@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.sortInterval;
+package com.goo.binarySearch;
 
 public class LC_0153_Find_Minimum_in_Rotated_Sorted_Array {
     public int findMin(int[] nums) {

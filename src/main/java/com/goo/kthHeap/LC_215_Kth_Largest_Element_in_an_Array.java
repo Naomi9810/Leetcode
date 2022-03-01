@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.kth;
+package com.goo.kthHeap;
 
 public class LC_215_Kth_Largest_Element_in_an_Array {
     public int findKthLargest(int[] nums, int k) {

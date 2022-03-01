@@ -11,7 +11,7 @@
  * <p> 3.
  */
 
-package com.goo.kth;
+package com.goo.kthHeap;
 
 import java.util.Arrays;
 
@@ -67,7 +67,6 @@ public class LC_0973_K_Closest_Points_to_Origin {
         } else {
             quickSelect(points, low, pivot - 1, k);
         }
-
         return pivot;
     }
 
