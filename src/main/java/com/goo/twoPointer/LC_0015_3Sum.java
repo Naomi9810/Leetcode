@@ -11,7 +11,7 @@
  * <p> 3.
  */
 
-package com.goo.sortInterval;
+package com.goo.twoPointer;
 
 import java.util.*;
 
@@ -37,7 +37,7 @@ public class LC_0015_3Sum {
             int sum = nums[i] + nums[left] + nums[right];
             if (sum == 0) {
                 res.add(Arrays.asList(nums[i], nums[left++], nums[right--])); // don't forget to move forward
-                while (left < right && nums[left] == nums[left - 1]) {
+                while (left < right && nums[left - 1] == nums[left]) {
                     left++; // 第二次dedup
                 }
             } else if (sum < 0) {

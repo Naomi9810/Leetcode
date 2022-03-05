@@ -19,7 +19,7 @@ public class LC_0011_Container_With_Most_Water {
 
         while (left < right) {
             int h = Math.min(height[left], height[right]);
-            res = Math.max( res, h * (right - left));
+            res = Math.max( res, h * (right - left)); // width 的计算注意带值进去算
             if (height[left] < height[right]) {
                 left++; // 从最宽开始 去短板 试图留住大的
             } else {

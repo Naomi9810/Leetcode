@@ -27,7 +27,7 @@ public class LC_0076_Minimum_Window_Substring {
             end++;
             while (counter == 0) {
                 if (minLen > end - start) {
-                    minLen = end - start;
+                    minLen = end - start; //  此处的end 已经++了
                     minStart = start;
                 }
                 final char remove = s.charAt(start);
