@@ -70,8 +70,6 @@ public class LC_0973_K_Closest_Points_to_Origin {
         return pivot;
     }
 
-
-
     public int getDist(int[] arr) {
         return arr[0] * arr[0] + arr[1] * arr[1];
     }

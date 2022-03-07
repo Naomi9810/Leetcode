@@ -18,7 +18,7 @@ import java.util.*;
 
 public class LC_0314_Binary_Tree_Vertical_Order_Traversal {
     public List<List<Integer>> verticalOrder(TreeNode root) {
-        // Dfs order is wrong, need to sort by depth
+        // Dfs order is wrong,  need to do level order
 //        Map<Integer, List<int[]>> map = new TreeMap<>();
 //        dfs(root, 0, 0, map);
 //        List<List<Integer>> res = new ArrayList<>();
@@ -39,35 +39,43 @@ public class LC_0314_Binary_Tree_Vertical_Order_Traversal {
 //        map.get(col).add(new int[]{depth, root.val});
 //        dfs(root.left, depth + 1, col - 1, map);
 //        dfs(root.right, depth + 1, col + 1, map);
-
         if (root == null) return new ArrayList<>();
+        // level order traverse  map
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        Queue<Pair<TreeNode, Integer>> que = new ArrayDeque<>();
+        que.offer(new Pair<>(root, 0));
 
-        Queue<Pair<Integer, TreeNode>> que = new ArrayDeque<>();  // Pair<col, TreeNode>
-        Map<Integer, List<Integer>> map = new TreeMap<>();
-
-        que.offer(new Pair<>(0, root));
-        map.putIfAbsent(0, new ArrayList<>());
-        map.get(0).add(root.val);
+        int left = 0, right = 0;
 
         while (!que.isEmpty()) {
-            Pair<Integer, TreeNode> cur = que.poll();
-            int col = cur.getKey();
-            TreeNode curNode = cur.getValue();
+            int size = que.size();
+            while (size-- > 0) {
+                Pair<TreeNode, Integer> p = que.poll();
+                TreeNode cur = p.getKey();
+                int pos = p.getValue();
 
-            if (curNode.left != null) {
-                que.offer(new Pair<>(col - 1, curNode.left));
-                map.putIfAbsent(col - 1, new ArrayList<>());
-                map.get(col - 1).add(curNode.left.val);
-            }
+                left = Math.min(left, pos);
+                right = Math.max(right, pos);
 
-            if (curNode.right != null) {
-                que.offer(new Pair<>(col + 1, curNode.right));
-                map.putIfAbsent(col + 1, new ArrayList<>());
-                map.get(col + 1).add(curNode.right.val);
+                map.putIfAbsent(pos, new ArrayList<>());
+                map.get(pos).add(cur.val);
+
+                if (cur.left != null) {
+                    que.offer(new Pair<>(cur.left, pos - 1));
+                }
+                if (cur.right != null) {
+                    que.offer(new Pair<>(cur.right, pos + 1));
+                }
             }
         }
 
-        return new ArrayList<>(map.values());
+        List<List<Integer>> res = new ArrayList<>();
+        for (int i = left; i <= right; i++) { //是连续的 所以可以一层层读取
+            res.add(map.get(i));
+        }
+        return res;
+
+
     }
 
 

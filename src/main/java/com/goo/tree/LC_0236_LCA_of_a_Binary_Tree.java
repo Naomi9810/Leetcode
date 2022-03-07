@@ -17,8 +17,8 @@ package com.goo.tree;
 public class LC_0236_LCA_of_a_Binary_Tree {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || p == null || q == null) return null;
-        if (root == p ) return p;
-        if (root == q ) return q;
+        if (root == p || root == q) return root; // 返回null 说明没找到
+
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
         if (left == null) return right; // 左边tree 没有任何一个node

@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.sortInterval;
+package com.goo.binarySearch;
 
 public class LC_0033_Search_in_Rotated_Sorted_Array {
     public int search(int[] nums, int target) {

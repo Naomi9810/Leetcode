@@ -15,11 +15,9 @@ package com.goo.tree;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.Queue;
 
 public class LC_0297_Serialize_and_Deserialize_Binary_Tree {
-    private static final String DIVIDER = ",";
-    private static final String NN = "X";
-
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
         StringBuilder sb = new StringBuilder();
@@ -27,29 +25,29 @@ public class LC_0297_Serialize_and_Deserialize_Binary_Tree {
         return sb.toString();
     }
 
-    private void buildString(TreeNode node, StringBuilder sb) {
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        Queue<String> que = new ArrayDeque<>(Arrays.asList(data.split(",")));
+        TreeNode root = buildTree(que);
+        return root;
+    }
+
+    public void buildString(TreeNode node, StringBuilder sb) {
         if (node == null) {
-            sb.append(NN).append(DIVIDER);
+            sb.append("#").append(",");
         } else {
-            sb.append(node.val).append(DIVIDER);
+            sb.append(node.val).append(",");
             buildString(node.left, sb);
             buildString(node.right, sb);
         }
     }
-    // Decodes your encoded data to tree.
-    public TreeNode deserialize(String data) {
-        Deque<String> nodes = new ArrayDeque<>(Arrays.asList(data.split(DIVIDER)));
-        return buildTree(nodes);
-    }
 
-    private TreeNode buildTree(Deque<String> nodes) {
-        String val = nodes.poll();
-        if (val == null || val.equals(NN)) return null;
-        else {
-            TreeNode node = new TreeNode(Integer.parseInt(val));
-            node.left = buildTree(nodes);
-            node.right = buildTree(nodes);
-            return node;
-        }
+    public TreeNode buildTree(Queue<String> que) {
+        String cur = que.poll();
+        if (cur == null || "#".equals(cur)) return null;
+        TreeNode node = new TreeNode(Integer.parseInt(cur));
+        node.left = buildTree(que);
+        node.right = buildTree(que);
+        return node;
     }
 }
