@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.math;
+package com.goo.mathMatrix;
 
 public class LC_0273_Integer_to_English_Words {
     String[] tens = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};

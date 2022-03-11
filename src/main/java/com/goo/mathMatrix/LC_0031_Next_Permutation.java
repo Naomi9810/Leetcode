@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.math;
+package com.goo.mathMatrix;
 
 
 public class LC_0031_Next_Permutation {

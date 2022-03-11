@@ -10,7 +10,7 @@
  * <p> 3. 用matrix 另外两点的 乘积 ++
  */
 
-package com.goo.math;
+package com.goo.mathMatrix;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.math;
+package com.goo.mathMatrix;
 
 public class LC_0041_First_Missing_Positive {
     public int firstMissingPositive(int[] nums) {

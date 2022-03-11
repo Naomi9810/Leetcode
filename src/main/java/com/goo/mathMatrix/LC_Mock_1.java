@@ -19,7 +19,7 @@
  * <p> 3.
  */
 
-package com.goo.math;
+package com.goo.mathMatrix;
 
 public class LC_Mock_1 {
     public int sumOfSubMatrix(int[] left, int[] right, int[][] matrix) {

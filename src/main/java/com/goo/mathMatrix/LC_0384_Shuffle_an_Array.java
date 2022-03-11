@@ -21,7 +21,7 @@
  * <p> 3.
  */
 
-package com.goo.math;
+package com.goo.mathMatrix;
 
 import java.util.Random;
 
