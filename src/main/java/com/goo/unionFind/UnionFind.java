@@ -3,7 +3,7 @@
  * Time Complexity:
  * <p>    O(log n)
  *
- * Using link-by-size, any UNION or FIND operation takes O(log n) time in the worst case,
+ * Using link-by-weight, any UNION or FIND operation takes O(log n) time in the worst case,
  * where n is the number of elements. Pf. ・The running time of each operation is bounded by the tree height
  * Space Complexity:
  * <p>
@@ -16,14 +16,14 @@
 package com.goo.unionFind;
 
 public class UnionFind {
-    int [] uf, size;
+    int [] uf, weight;
     int count;
     public UnionFind(int len) {
         uf = new int[len];
-        size = new int[len];
+        weight = new int[len];
         for (int i = 0; i < len; i++) {
             uf[i] = i;
-            size[i] = 1;
+            weight[i] = 1;
         }
         count = len;
     }
@@ -42,12 +42,12 @@ public class UnionFind {
 
         if (rx == ry) return;
 
-        if (size[rx] > size[ry]) {
+        if (weight[rx] > weight[ry]) {
             uf[ry] = rx;
-            size[rx] += size[ry];
+            weight[rx] += weight[ry];
         } else {
             uf[rx] = ry;
-            size[ry] += size[rx];
+            weight[ry] += weight[rx];
         }
         count --;
     }

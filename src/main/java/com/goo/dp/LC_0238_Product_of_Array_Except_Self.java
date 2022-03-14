@@ -14,17 +14,21 @@ package com.goo.dp;
 
 public class LC_0238_Product_of_Array_Except_Self {
     public int[] productExceptSelf(int[] nums) {
-        int[] res = new int[nums.length];
-        res[0] = 1;
+        int len = nums.length;
+        int[] res = new int[len];
 
-        for (int i = 1; i < nums.length; i++) {
-            res[i] = res[i - 1] * nums[i - 1]; // 左一遍 从1开始
+        int left = 1;
+        for (int i = 0; i < len; i++) {
+            res[i] = left;
+            left *= nums[i];
         }
+
         int right = 1;
-        for (int j = nums.length - 1; j >= 0; j--) {
-            res[j] *= right;
-            right *= nums[j]; // 右一遍 找一个right 让右边第一个不要乘
+        for (int i = len - 1; i >= 0; i--) {
+            res[i] *= right;
+            right *= nums[i];
         }
+
         return res;
     }
 }

@@ -10,7 +10,7 @@ import java.util.TreeSet;
  * Time Complexity: O(NKlogNK) N is the number of accounts and K is the maximum length of an
  * account
  * <p>
- * Using link-by-size, any UNION or FIND operation takes O(log n) time in the worst case, where n is
+ * Using link-by-weight, any UNION or FIND operation takes O(log n) time in the worst case, where n is
  * the number of elements. Pf. ・The running time of each operation is bounded by the tree height.
  * <p>
  * Space Complexity: O(NK) - N is the number of accounts and K is the maximum length of an

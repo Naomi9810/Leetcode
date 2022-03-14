@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.slidingWindow;
+package com.goo.twoPointer;
 
 import java.util.ArrayList;
 import java.util.Collections;

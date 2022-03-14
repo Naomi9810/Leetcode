@@ -1,4 +1,4 @@
-package com.goo.slidingWindow;
+package com.goo.twoPointer;
 
 /**
  * Time Complexity:

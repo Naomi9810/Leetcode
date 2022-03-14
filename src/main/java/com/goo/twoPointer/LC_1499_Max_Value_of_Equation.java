@@ -10,7 +10,7 @@
  * <p> 3. when to calculate the equation? xi - xj <= k so when > k, we keep polling
  */
 
-package com.goo.slidingWindow;
+package com.goo.twoPointer;
 
 import java.util.Deque;
 import java.util.LinkedList;

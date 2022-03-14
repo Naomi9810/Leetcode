@@ -8,7 +8,7 @@
  * <p> 3. Move window
  */
 
-package com.goo.slidingWindow;
+package com.goo.twoPointer;
 
 import java.util.Deque;
 import java.util.LinkedList;

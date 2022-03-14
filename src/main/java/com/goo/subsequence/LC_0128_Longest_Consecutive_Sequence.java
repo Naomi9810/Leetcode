@@ -12,9 +12,12 @@
 
 package com.goo.subsequence;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class LC_0128_Longest_Consecutive_Sequence {
     public int longestConsecutive(int[] nums) {
-        Set<Integer> set = new HashSet<Integer>();
+        Set<Integer> set = new HashSet<>();
 
         for (int n: nums) {
             set.add(n);
