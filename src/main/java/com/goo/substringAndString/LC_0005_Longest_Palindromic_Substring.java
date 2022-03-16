@@ -13,28 +13,36 @@
 package com.goo.substringAndString;
 
 public class LC_0005_Longest_Palindromic_Substring {
-        private int left, maxLen;
-
-        public String longestPalindrome(String s) {
-            int len = s.length();
-            if (len < 2)
-                return s;
-
-            for (int i = 0; i < len-1; i++) {
-                extendPalindrome(s, i, i);  //assume odd length, try to extend Palindrome as possible
-                extendPalindrome(s, i, i+1); //assume even length.
-            }
-            return s.substring(left, left + maxLen);
-        }
-
-        private void extendPalindrome(String s, int i, int j) {
-            while (i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j)) {
-                i--;
-                j++;
-            }
-            if (maxLen < j - i - 1) {
-                left = i + 1;
-                maxLen = j - i - 1;
+    public String longestPalindrome(String s) {
+        if (s == null || s.length() == 0) return "";
+        char[] charArr = s.toCharArray();
+        int maxLen = 1;
+        int maxStart = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (i-1 >=0 && charArr[i] == charArr[i-1] ) {
+                int[] res = span(charArr, i-1, i);
+                if ( res[1] > maxLen) {
+                    maxLen = res[1];
+                    maxStart = res[0];
+                }
+            } // 不要轻易写else 互斥结果
+            if (i-1 >=0 && i+1 < s.length() && charArr[i+1] == charArr[i-1] ) {
+                int[] res = span(charArr, i-1, i+1);
+                if ( res[1] > maxLen) {
+                    maxLen = res[1];
+                    maxStart = res[0];
+                }
             }
         }
+        return s.substring(maxStart, maxStart+maxLen);
+
+    }
+
+    private int[] span(char[] charArr, int start, int end) {
+        while (start >= 0 && end < charArr.length && charArr[start] == charArr[end]) {
+            start--;
+            end++;
+        }
+        return new int[] {start + 1, end - start - 1}; //start, maxLen;
+    }
 }
