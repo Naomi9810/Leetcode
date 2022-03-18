@@ -30,7 +30,7 @@ public class LC_0366_Find_Leaves_of_Binary_Tree {
 
     private int findLeavesHelper(TreeNode root, List<List<Integer>> res) {
         if (root == null) {
-            return -1;
+            return -1; // null 从-1开始 才能保证 跟idx对应
         }
         int leftHeight = findLeavesHelper(root.left, res);
         int rightHeight = findLeavesHelper(root.right, res);

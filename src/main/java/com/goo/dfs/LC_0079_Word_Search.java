@@ -14,38 +14,31 @@ package com.goo.dfs;
 
 public class LC_0079_Word_Search {
     public boolean exist(char[][] board, String word) {
-        // validation
-        int col = board[0].length;
-        char[] wordArr = word.toCharArray();
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j] == wordArr[0]) {
-                    board[i][j] = '#';
-                    if (dfs(board, i, j, 1, wordArr)) {
-                        return true;
-                    }
-                    board[i][j] = wordArr[0];
+        char[] charArr = word.toCharArray();
+        int row = board.length, col = board[0].length;
+        boolean[][] visited = new boolean[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (dfs(board, visited, 0, i, j, charArr)) {
+                    return true;
                 }
             }
         }
         return false;
     }
 
-    private boolean dfs(char[][] board, int i, int j, int pos, char[] wordArr) {
-        if (pos == wordArr.length) return true;
-        int[][] dir = new int[][]{{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
-        int col = board[0].length;
+    private boolean dfs(char[][] board, boolean[][] visited, int idx, int i, int j, char[] charArr) {
+        // base case:
+        if (idx == charArr.length) return true;
+        if (i < 0 || j < 0 || i >= board.length || j >= board[0].length) return false; // out of bound
+        if (board[i][j] != charArr[idx] || visited[i][j]) return false; // not meeting requirement
 
-        for (int[] d: dir) {
-            int i2 = i + d[0];
-            int j2 = j + d[1];
-            if (i2 < 0 || j2 < 0 || i2 >= board.length || j2 >= col || board[i2][j2] == '#' || board[i2][j2] != wordArr[pos]) continue;
-            board[i2][j2] = '#';
-            if (dfs(board, i2, j2, pos+1, wordArr)){
-                return true;
-            }
-            board[i2][j2] = wordArr[pos];
-        }
+        visited[i][j] = true;
+        if (dfs(board, visited, idx + 1, i + 1, j, charArr)) return true;
+        if (dfs(board, visited, idx + 1, i - 1, j, charArr)) return true;
+        if (dfs(board, visited, idx + 1, i, j + 1, charArr)) return true;
+        if (dfs(board, visited, idx + 1, i, j - 1, charArr)) return true;
+        visited[i][j] = false;
         return false;
     }
 }

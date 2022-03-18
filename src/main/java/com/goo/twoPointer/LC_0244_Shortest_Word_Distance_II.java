@@ -5,6 +5,11 @@
  * Space Complexity:
  * <p>
  * Hints: two pointer 找相近的
+ * 1. store String and its idx List<Integer
+ * 2. store String w1+w2
+ * 3. two pointer to calculate the min and save
+ * ></>
+ * 2.
  * <p> 1.
  * <p> 2.
  * <p> 3.
