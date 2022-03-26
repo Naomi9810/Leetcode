@@ -36,29 +36,36 @@ public class LC_1249_Minimum_Remove_to_Make_Valid_Parentheses {
 
 //         return String.join("", arr);
 
-        int open = 0;
-        char[] arr = s.toCharArray();
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == '(') {
-                open++;
-            } else if (arr[i] == ')') {
-                if (open > 0) {
-                    open--;
-                } else {
-                    arr[i] = '*';
+        char[] charArr = s.toCharArray();
+        int left = 0;
+
+        for (int i = 0; i < charArr.length; i++) {
+            char c = charArr[i];
+            if (c == '(') {
+                left++;
+            } else if (c == ')') {
+                if (left > 0) left--;
+                else {
+                    charArr[i] = '*'; // mark remove
                 }
             }
         }
 
-        StringBuilder sb = new StringBuilder();
-        for (int i = arr.length - 1; i >= 0; i--) { // 多余的（ 从右边出
-            if (open > 0 && arr[i] == '(') {
-                open--;
-                // skip this
-            } else if (arr[i] != '*') {
-                sb.append(arr[i]);
+        for (int i = charArr.length-1; i >= 0  && left > 0; i--) {
+            // 多余的（ 从右边出 例子🌰  "())()((("
+            char c = charArr[i];
+            if (c == '(') {
+                charArr[i] = '*'; // mark as remove
+                left--;
             }
         }
-        return sb.reverse().toString();
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < charArr.length; i++) {
+            if (charArr[i] != '*') {
+                sb.append(charArr[i]);
+            }
+        }
+        return sb.toString();
     }
 }

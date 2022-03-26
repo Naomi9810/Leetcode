@@ -6,6 +6,8 @@
  * <p>
  * Hints:
  * No need to count the frequency, just everytime there is a cache hit, move it to the head
+ * 每次都move到head
+ * moveTohead = remove+ addToHead
  * <p>
  * move to head = remove node + add to head
  * <p> 1.
@@ -85,8 +87,6 @@ public class LC_0146_LRU_Cache {
 
         public Node() {
         }
-
-        ;
 
         public Node(int key, int value) {
             this.key = key;
