@@ -4,7 +4,8 @@
  * <p>
  * Space Complexity:
  * <p>
- * Hints:
+ * Hints: 类似trie的结构 getLeave 就是根据path 一路创建新的node
+ * ls 如果是 File 只加 name 不是File 加全部的children
  * <p> 1.
  * <p> 2.
  * <p> 3.
