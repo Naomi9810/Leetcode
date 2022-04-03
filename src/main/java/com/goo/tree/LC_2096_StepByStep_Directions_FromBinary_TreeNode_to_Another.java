@@ -21,6 +21,7 @@ package com.goo.tree;
 
 public class LC_2096_StepByStep_Directions_FromBinary_TreeNode_to_Another {
     public String getDirections(TreeNode root, int startValue, int destValue) {
+        // 不用找到node 直接找lca Node
         StringBuilder startPath = new StringBuilder(), destPath = new StringBuilder(), res = new StringBuilder();
         TreeNode lca = findLCA(root, startValue, destValue);
         findPath(lca, startValue, startPath);

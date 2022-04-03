@@ -32,6 +32,9 @@ public class LC_0366_Find_Leaves_of_Binary_Tree {
         if (root == null) {
             return -1; // null 从-1开始 才能保证 跟idx对应
         }
+
+        // height 在求height的过程中 顺便把值给取出来
+
         int leftHeight = findLeavesHelper(root.left, res);
         int rightHeight = findLeavesHelper(root.right, res);
         int height = Math.max(leftHeight, rightHeight) + 1; // leaves height will be 0
@@ -39,7 +42,7 @@ public class LC_0366_Find_Leaves_of_Binary_Tree {
             res.add(new ArrayList<>());
         }
         res.get(height).add(root.val);
-        root.left = root.right = null;
+        root.left = root.right = null; // set null
         return height;
     }
 }

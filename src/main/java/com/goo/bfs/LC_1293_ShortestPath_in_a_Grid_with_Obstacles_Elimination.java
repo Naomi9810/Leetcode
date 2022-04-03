@@ -5,15 +5,9 @@
  * Space Complexity:
  * <p>
  * Hints:
- * <p> 1. greedy BFS try to go right and down possible to find a path, if we need the obstacles:
- * <p> 2. To find the shortest path in the unweighted-graph, we can use BFS
- * In this problem is a variant of BFS. Beside (r, c) we need to add 1 more param k,
- * which is the number of obstacles we can eliminate when we start at cell (r, c).
- * <p> 3. shortest way is m+n steps, we want to explore the right/down direction because we know the destination
- * A start algorithm： we cannot exclude (or prune) those less promising directions, otherwise we might miss the
- * correct path because sometimes we have to take a detour in order to reach the destination.
- * f(n) = g(n) + h(n)
- * total steps = steps traveled so far +  heuristic estimation this spot to destination
+ * bfs + visited 唯一不同的是记两个东西， 一个是k障碍物 一个是步数
+ * boolean visited[][][] = new boolean[m][n][k+1];
+ * que.offer(new int[] {0, 0, k, 0}); // position, number of k， step
  */
 
 package com.goo.bfs;
