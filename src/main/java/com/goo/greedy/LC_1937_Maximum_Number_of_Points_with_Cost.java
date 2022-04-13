@@ -1,9 +1,7 @@
 /**
  * Created by Sijia on 1/14/22
- * Time Complexity:
- * <p>
- * Space Complexity:
- * <p>
+ * Time Complexity: O(mn)
+ * Space Complexity: O(n)
  * Hints: https://leetcode.com/problems/maximum-number-of-points-with-cost/discuss/1344908/C%2B%2BJavaPython-3-DP-Explanation-with-pictures.
  * <p> 1. 左右都要算一遍 不能遗漏， 要么竖着直接取 pre[j] 或者 向左 向右
  * <p> 2.
@@ -13,32 +11,35 @@
 package com.goo.greedy;
 
 public class LC_1937_Maximum_Number_of_Points_with_Cost {
+    // 新建col的 dp 初始值就是这行的 point[i][j]
+    // 从左到右取大 从又到左取大 保证这行的max都取到
     public long maxPoints(int[][] points) {
-        long res = 0;
-        int row = points.length, col = points[0].length;
-        long[] pre = new long[col];
-        for (int j = 0; j < col; j++) {
-            pre[j] = points[0][j];
-        }
-        for (int i = 1; i < row; i++) {
-            long[] cur = new long[col], left = new long[col], right = new long[col];
-            left[0] = pre[0];
-            right[col - 1] = pre[col - 1];
-            for (int j = 1; j < col; j++) {
-                left[j] = Math.max(pre[j], left[j - 1] - 1);
+        int rows = points.length;
+        int cols = points[0].length;
+
+        long[] dp = new long[cols];
+
+        for (int i = 0; i < rows; i++) {
+
+            for (int j = 0; j < cols; j++) {
+                dp[j] += points[i][j];
             }
-            for (int j = col - 2; j >= 0; j--) {
-                right[j] = Math.max(pre[j], right[j + 1] - 1);
+
+            //left to right pass
+            for (int j = 1; j < cols; j++) {
+                dp[j] = Math.max(dp[j], dp[j - 1] - 1); // 取这一排的这个值 或者往左一排的值
             }
-            for (int j = 0; j < col; j++) {
-                cur[j] = points[i][j] + Math.max(left[j], right[j]);
-                pre = cur;
+
+            //right to left pass
+            for (int j = cols - 2; j >= 0; j--) {
+                dp[j] = Math.max(dp[j], dp[j + 1] - 1);  // 取这一排的这个值 或者往往右一排的值
             }
         }
 
-        for (int j = 0; j < col; j++) {
-            res = Math.max(res, pre[j]);
+        long maxPoints = 0;
+        for (int j = 0; j < cols; j++) {
+            maxPoints = Math.max(maxPoints, dp[j]);
         }
-        return res;
+        return maxPoints;
     }
 }

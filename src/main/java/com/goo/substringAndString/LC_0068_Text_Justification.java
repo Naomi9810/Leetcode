@@ -14,56 +14,64 @@
 package com.goo.substringAndString;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Queue;
 
 public class LC_0068_Text_Justification {
     public List<String> fullJustify(String[] words, int maxWidth) {
         List<String> res = new ArrayList<>();
-        Queue<String> wordList = new LinkedList<>(); // FIFO to poll the word from the list
-        int textWidth = 0; //  current pure text width
+        StringBuilder sb = new StringBuilder();
+        int i = 0, wordLen = 0, wordCount = 0;
 
-        // build the wordList for each line:
-        for (int i = 0; i < words.length; ) {
-            if (textWidth + words[i].length() + wordList.size() <= maxWidth) { //  current pure text width + next word + current text space
-                textWidth += words[i].length();
-                wordList.add(words[i++]);
-                continue;
+        while (i < words.length) {
+            if (sb.length() + words[i].length() <= maxWidth) {
+                wordLen += words[i].length();
+                wordCount++;
+                sb.append(words[i++]).append(" "); // word 加一个空格的
+            } else {
+                String line = genLine(sb, wordCount, wordLen, maxWidth);
+                res.add(line); // 加完之后 reset
+                sb.setLength(0);
+                wordLen = 0;
+                wordCount = 0;
             }
 
-            int spaceBtw = (maxWidth - textWidth) / Math.max(1, wordList.size() - 1);
-            int spaceExtra = (maxWidth - textWidth) % Math.max(1, wordList.size() - 1);
-
-            String line = createLine(wordList, maxWidth, spaceBtw, spaceExtra--); // wordList will be polled empty
-            res.add(line);
-            textWidth = 0; // reset
         }
-
-        String lastLine = createLine(wordList, maxWidth, 1, 0);
-        res.add(lastLine);
+        // last line
+        while (sb.length() != 0 && sb.length() <= maxWidth) {
+            sb.append(" ");
+        }
+        sb.setLength(maxWidth);
+        res.add(sb.toString());
         return res;
+
     }
 
-    private String createLine(Queue<String> wordList, int maxWidth, int spaceBtw, int spaceExtra) {
-        StringBuilder sb = new StringBuilder();
-        while (!wordList.isEmpty()) {
-            sb.append(wordList.poll())
-                    .append(wordList.isEmpty() ? "" : addSpace(spaceBtw)) //no need to append last word
-                    .append(spaceExtra-- > 0 ? " " : "");
+    private String genLine(StringBuilder sb, int wordCount, int wordLen, int maxWidth) {
+        if (wordCount == 1) {
+            while (sb.length() <= maxWidth) {
+                sb.append(" ");
+            }
+            sb.setLength(maxWidth);
+            return sb.toString();
         }
 
-        if (sb.length() < maxWidth) {
-            sb.append(addSpace(maxWidth - sb.length()));
+        int spaceCount = (maxWidth - wordLen) / (wordCount-1);
+        int extraSpace =  (maxWidth - wordLen) % (wordCount-1);
+        String space = " ".repeat(spaceCount);
+        String[] spaceArr = new String[wordCount-1];
+        Arrays.fill(spaceArr, space);
+        for (int i = 0; i < extraSpace; i++) {
+            spaceArr[i] += " ";
         }
-        return sb.toString();
-    }
-
-    private String addSpace(int spaceCount) {
-        StringBuilder spaces = new StringBuilder();
-        while (spaceCount-- > 0) {
-            spaces.append(" ");
+        String[] splited = sb.toString().split(" ");
+        StringBuilder line = new StringBuilder();
+        for (int i = 0; i < splited.length; i++) {
+            line.append(splited[i]);
+            if (i < spaceArr.length) {
+                line.append(spaceArr[i]);
+            }
         }
-        return spaces.toString();
+        return line.toString();
     }
 }

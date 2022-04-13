@@ -12,11 +12,12 @@
  * <p> 3.
  */
 
-package com.goo.array;
+package com.goo.design;
 
 import java.util.*;
 
 public class LC_1146_Snapshot_Array {
+    // 快照号码用list size实现, map 用来快速查找
     private List<Map<Integer, Integer>> list;
 
     public void SnapshotArray(int length) {

@@ -1,6 +1,7 @@
 package com.goo.design;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,47 +16,57 @@ import java.util.List;
  * <p> 3.
  */
 public class LC_0843_Guess_the_Word {
+    public void findSecretWord(String[] wordlist, Master master) {
+        List<String> guessList = Arrays.asList(wordlist);
+        while (true) {
+            String guessed = getBestGuess(guessList);
+            int match = master.guess(guessed);
+            if (match == 6) return;
+            guessList = getAllWordsWithMatchK(guessList, guessed, match);
+        }
 
-  public void findSecretWord(String[] wordlist, Master master) {
-    for (int guess = 0, ans = 0; guess < 10 && ans < 6; guess++) {
-      int count[][] = new int[6][26], best = 0;
-      for (String w : wordlist) {
-        for (int j = 0; j < 6; j++) {
-          count[j][w.charAt(j) - 'a']++;
-          // each idx the char count
-        }
-      }
-      String guessWord = wordlist[0];
-
-      for (String w : wordlist) {
-        int score = 0;
-        for (int j = 0; j < 6; j++) {
-          score += count[j][w.charAt(j) - 'a'];
-        }
-        if (score > best) {
-          guessWord = w;
-          best = score;
-        }
-      }
-
-      ans = Master.guess(guessWord);
-      List<String> wordlist2 = new ArrayList<>();
-      for (String w : wordlist) {
-        if (match(guessWord, w) == ans) {
-          wordlist2.add(w);
-        }
-      }
-      wordlist = wordlist2.toArray(new String[0]);
     }
-  }
 
-  private int match(String secret, String guess) {
-    int match = 0;
-    for (int i = 0; i < secret.length(); i++) {
-      if (secret.charAt(i) == guess.charAt(i)) {
-        match++;
-      }
+    private String getBestGuess(List<String> wordlist) {
+        int[][] count = new int[6][26];
+        for (String w : wordlist) {
+            for (int i = 0; i < w.length(); i++) {
+                char ch = w.charAt(i);
+                count[i][ch - 'a']++;
+            }
+        }
+        int maxScore = 0;
+        String bestWord = "";
+        for (String w : wordlist) {
+            int score = 0;
+            for (int i = 0; i < w.length(); i++) {
+                char ch = w.charAt(i);
+                score += count[i][ch - 'a'];
+            }
+            if (score >= maxScore) {
+                maxScore = score;
+                bestWord = w;
+            }
+        }
+        return bestWord;
     }
-    return match;
-  }
+
+    private List<String> getAllWordsWithMatchK(List<String> wordlist, String input, int k) {
+        List<String> result = new ArrayList<>();
+        for (String w : wordlist) {
+            if (getMatchCount(w, input) == k) {
+                result.add(w);
+            }
+        }
+
+        return result;
+    }
+
+    private int getMatchCount(String s1, String s2) {
+        int count = 0;
+        for (int i = 0; i < s1.length(); i++) {
+            count += (s1.charAt(i) == s2.charAt(i)) ? 1 : 0;
+        }
+        return count;
+    }
 }

@@ -3,10 +3,9 @@ package com.goo.design;
 /**
  * Master class.
  */
-public interface Master {
+public class Master {
 
-  public static int guess(String word) {
+  public int guess(String word) {
     return 0;
   }
-
 }

@@ -1,9 +1,6 @@
 package com.goo.substringAndString;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Time Complexity:
@@ -18,23 +15,25 @@ import java.util.List;
  */
 public class LC_0833_Find_And_Replace_in_String {
 
-  public String findReplaceString(String s, int[] indices, String[] sources, String[] targets) {
-    List<int[]> sorted = new ArrayList<>();
-    for (int i = 0; i < indices.length; i++) {
-      sorted.add(new int[]{indices[i], i});
-    }
-    Collections.sort(sorted,
-        Comparator.comparing(a -> -a[0])); // sort based from idx in decreasing order
-    for (int[] idx : sorted) {
-      int i = idx[0];
-      int j = idx[1]; // i is the s idx, j is the string idx
-      String find = sources[j];
-      String replace = targets[j];
-      if (s.startsWith(find, i)) {
-        s = s.substring(0, i) + replace + s.substring(i + find.length());
-      }
-    }
-    return s;
-  }
+    public String findReplaceString(String s, int[] indices, String[] sources, String[] targets) {
+        int len = s.length();
+        int[] bucket = new int[len];
+        Arrays.fill(bucket, -1); // bucket
 
+        for (int i = 0; i < indices.length; i++) {
+            bucket[indices[i]] = i;
+        }
+        StringBuilder sb = new StringBuilder(s);
+
+        for (int i = len-1; i >=0; i--) {
+            int j = bucket[i];
+            if (j >= 0) {
+                String sub = sources[j];
+                if (s.substring(i).startsWith(sub)) {
+                    sb.replace(i, i + sub.length(), targets[j]);
+                }
+            }
+        }
+        return sb.toString();
+    }
 }

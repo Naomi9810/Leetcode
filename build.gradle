@@ -3,7 +3,7 @@ plugins {
 }
 
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = "11"
 
 sourceSets {
     main {
@@ -33,3 +33,4 @@ test {
 dependencies {
     implementation 'junit:junit:4.13.1'
 }
+targetCompatibility = JavaVersion.VERSION_11
