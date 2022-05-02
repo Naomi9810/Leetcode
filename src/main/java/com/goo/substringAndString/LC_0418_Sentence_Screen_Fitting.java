@@ -7,22 +7,26 @@ package com.goo.substringAndString;
  * <p> O(N) N is the sentence len
  * Hints:
  * <p> 1. join to form a full sentence + " ", " "  is because each single space is needed.
- * <p> 2.
+ * <p> 2. https://github.com/wisdompeak/LeetCode/tree/master/String/418.Sentence-Screen-Fitting
  * <p> 3.
  */
 public class LC_0418_Sentence_Screen_Fitting {
 
   public int wordsTyping(String[] sentence, int rows, int cols) {
-    String fullSentence = String.join(" ", sentence) + " "; // full sentence
-    int total = 0, len = fullSentence.length(); //  total is the counter for how many valid characters from fullSentence
-    // have been put to our screen
-    for (int i = 0; i < rows; i++) {
-      total += cols; // every time add the whole cols
-      while (total >= 0 && fullSentence.charAt(total % len) != ' ') { // letter can't be divided, so must find the " " as the break point
-        total--; // move to left idx to find the break
-      }
-      total++; // move forward to fit the next char
+    String full = "";
+    for (String w: sentence) {
+      if (w.length() > cols) return 0;
+      full += w + " ";
     }
-    return total / len;
+    int fullLen = full.length();
+    int total = 0; // total is the counter for how many valid characters from fullSentence
+    for (int j = 0; j < rows; j++) {
+      total += cols; // every time add the whole cols
+      while (full.charAt(total % fullLen) != ' ') {
+        total--;
+      }
+      total++;
+    }
+    return total/fullLen;
   }
 }

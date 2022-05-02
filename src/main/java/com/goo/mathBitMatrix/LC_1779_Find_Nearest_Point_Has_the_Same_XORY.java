@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.mathMatrix;
+package com.goo.mathBitMatrix;
 
 public class LC_1779_Find_Nearest_Point_Has_the_Same_XORY {
     public int nearestValidPoint(int x, int y, int[][] points) {

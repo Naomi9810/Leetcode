@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.mathMatrix;
+package com.goo.mathBitMatrix;
 
 public class LC_2128_Remove_All_Ones_With_Row_and_Column_Flips {
     public boolean removeOnes(int[][] grid) {

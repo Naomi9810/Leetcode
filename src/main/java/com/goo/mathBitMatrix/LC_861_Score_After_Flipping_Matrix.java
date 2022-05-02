@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.mathMatrix;
+package com.goo.mathBitMatrix;
 
 public class LC_861_Score_After_Flipping_Matrix {
     public int matrixScore(int[][] grid) {

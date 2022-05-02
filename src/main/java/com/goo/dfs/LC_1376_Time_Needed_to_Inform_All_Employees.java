@@ -1,9 +1,6 @@
 package com.goo.dfs;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Time Complexity: O(N) .
@@ -17,26 +14,25 @@ import java.util.Map;
 public class LC_1376_Time_Needed_to_Inform_All_Employees {
 
   public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
-    Map<Integer, List<Integer>> managerToIdx = new HashMap<>();
+    Map<Integer,List<Integer>> map = new HashMap<>();
+
     for (int i = 0; i < manager.length; i++) {
-      // loop through the manager list
-      managerToIdx.putIfAbsent(manager[i], new LinkedList<>());
-      managerToIdx.get(manager[i]).add(i);
+      map.putIfAbsent(manager[i], new ArrayList<>());
+      map.get(manager[i]).add(i);
     }
-    return calculateInformTime(headID, managerToIdx, informTime);
+    return getInformTime(headID, map, informTime);
   }
 
-  private int calculateInformTime(int manager, Map<Integer, List<Integer>> managerToIdx,
-      int[] informTime) {
-    int max = 0;
-    if (!managerToIdx.containsKey(manager)) {
-      return max;
-    } else {
-      List<Integer> subIdx = managerToIdx.get(manager);
-      for (int sub: subIdx) {
-        max = Math.max(max, calculateInformTime(sub, managerToIdx, informTime));
+  private int getInformTime(int cur, Map<Integer,List<Integer>> map, int[] informTime) {
+    int time = informTime[cur];
+    List<Integer> subList = map.get(cur);
+    int subTime = 0;
+    if (subList != null) {
+      for (int sub: subList) {
+        subTime = Math.max(subTime, getInformTime(sub, map, informTime));
       }
-      return max + informTime[manager];
+      time += subTime;
     }
+    return time;
   }
 }

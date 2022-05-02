@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.mathMatrix;
+package com.goo.mathBitMatrix;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

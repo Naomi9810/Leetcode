@@ -32,7 +32,6 @@ public class LC_0056_Merge_Intervals {
                 pre[1] = Math.max(pre[1], cur[1]);
             }
         }
-
         return res.toArray(new int[res.size()][]); //
     }
 }

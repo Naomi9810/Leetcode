@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.mathMatrix;
+package com.goo.mathBitMatrix;
 
 public class LC_0043_Multiply_Strings {
     public String multiply(String num1, String num2) {

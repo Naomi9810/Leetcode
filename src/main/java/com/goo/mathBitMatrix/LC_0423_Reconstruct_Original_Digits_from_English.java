@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.mathMatrix;
+package com.goo.mathBitMatrix;
 
 public class LC_0423_Reconstruct_Original_Digits_from_English {
     public String originalDigits(String s) {

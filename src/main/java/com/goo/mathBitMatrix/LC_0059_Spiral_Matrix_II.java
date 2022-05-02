@@ -10,7 +10,7 @@
  * <p> 3.
  */
 
-package com.goo.mathMatrix;
+package com.goo.mathBitMatrix;
 
 public class LC_0059_Spiral_Matrix_II {
     public int[][] generateMatrix(int n) {

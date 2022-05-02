@@ -36,5 +36,3 @@ public class LC_1762_Buildings_With_an_Ocean_View {
         return resArr;
     }
 }
-
-}
