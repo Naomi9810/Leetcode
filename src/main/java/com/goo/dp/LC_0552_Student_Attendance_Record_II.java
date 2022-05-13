@@ -7,7 +7,7 @@
  * Hints:
  * <p> 1. only one A is allows so consider the pure L and P cases then insert A
  * https://leetcode.com/problems/student-attendance-record-ii/discuss/101638/Simple-Java-O(n)-solution
- * three cases:
+ * three cases: 只有这三种 case是valid的 前面是 valid的sequence 怎么不重复的加 才能保持valid
  * 1. (valid sequence length 𝑛−1)P
  * 2. (valid sequence length 𝑛−2)PL
  * 3. (valid sequence length 𝑛−3)PLL
@@ -19,19 +19,25 @@
 package com.goo.dp;
 
 public class LC_0552_Student_Attendance_Record_II {
-    static final long M = 1000000007;
+    static final int M = 1000000007;
     public int checkRecord(int n) {
-        long[] f = new long[n <= 5 ? 6 : n + 1]; // only has P and L
-        f[0] = 1;
-        f[1] = 2;
-        f[2] = 4; // LL, PP, LP, PL
-        f[3] = 7; // 2*2*2 = 8 - 1 (LLL)
-        for (int i = 4; i <= n; i++)
-            f[i] = ((2 * f[i - 1]) % M + (M - f[i - 4])) % M;
-        long sum = f[n];
-        for (int i = 1; i <= n; i++) { //  insert A
-            sum += (f[i - 1] * f[n - i]) % M;
+        long[] end_PL = new long[n + 1]; // the possible valid record for P and L
+        long[] end_P = new long[n + 1];
+
+        end_PL[0] = end_P[0] = 1;
+        end_PL[1] = 2; // P or L
+        end_P[1] = 1; // P
+
+        for (int i = 2; i <= n; i++) {
+            end_P[i] = end_PL[i - 1]; // just append P after valid end_PL
+            end_PL[i] = (end_P[i] + end_P[i - 1] + end_P[i - 2]) % M;
         }
-        return (int)(sum % M);
+
+        long res = end_PL[n]; // [0, i] n=i [i+1， n] len = n-i-1
+        for (int i = 0; i < n; i++) {
+            long s = end_PL[i] * end_PL[n - i - 1];
+            res = (res + s) % M;
+        }
+        return (int) res;
     }
 }

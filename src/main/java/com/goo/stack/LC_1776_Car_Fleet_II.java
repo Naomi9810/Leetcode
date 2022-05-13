@@ -48,7 +48,6 @@ public class LC_1776_Car_Fleet_II {
                 res[i] = (double) (position2 - position) / (speed - speed2);
             }
             stack.add(i); // put index in the stack
-
         }
         return res;
     }

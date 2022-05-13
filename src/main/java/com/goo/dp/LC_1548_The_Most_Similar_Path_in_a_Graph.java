@@ -30,18 +30,18 @@ public class LC_1548_The_Most_Similar_Path_in_a_Graph {
             graph[r[1]][r[0]] = true;
         }
 
-        int m = targetPath.length;
-        int[][] dp = new int[m][n];
-        int[][] pre = new int[m][n];
+        int len = targetPath.length;
+        int[][] dp = new int[len][n];
+        int[][] pre = new int[len][n];
 
         for (int j = 0; j < n; j++) {
             dp[0][j] = names[j].equals(targetPath[0]) ? 0 : 1; // if it's start point then edit distance is 0 otherwise is 1
         }
 
         // fill the dp matrix:
-        for (int i = 1; i < m; i++) {
+        for (int i = 1; i < len; i++) {
             for (int j = 0; j < n; j++) {
-                int min = m + 1; // if target not in the names, then each target will have m+1 edit distance see example 2
+                int min = len + 1; // if target not in the names, then each target will have m+1 edit distance see example 2
                 for (int k = 0; k < n; k++) {
                     if (graph[k][j]) {
                         if (dp[i - 1][k] < min) {
@@ -56,17 +56,17 @@ public class LC_1548_The_Most_Similar_Path_in_a_Graph {
         }
 
         // pick the smallest from the last row:
-        int min = m + 1, stop = 0;
+        int min = len + 1, stop = 0;
         for (int j = 0; j < n; j++) {
-            if (dp[m - 1][j] < min) {
-                min = dp[m - 1][j];
+            if (dp[len - 1][j] < min) {
+                min = dp[len - 1][j];
                 stop = j;
             }
         }
         List<Integer> res = new ArrayList<>();
         res.add(stop);
 
-        for (int i = m - 1; i > 0; i--) {
+        for (int i = len - 1; i > 0; i--) {
             // find each stop's pre stop and add to res:
             stop = pre[i][stop];
             res.add(stop);
