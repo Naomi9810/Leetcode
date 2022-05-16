@@ -16,9 +16,9 @@ import java.util.*;
 
 public class LC_1268_Search_Suggestions_System {
     /*
-Asumption:
+Assumption:
 lower case English letter
-Sotution:
+Solution:
 1. build a Trie using products works, build the suggestion list at the same time
 2. search once the trie  add at the same time.
 

@@ -6,7 +6,7 @@
  * <p>
  * Hints: https://leetcode.com/problems/max-value-of-equation/discuss/710434/C%2B%2BJava-O(n)-minimalizm
  * <p> 1. sorted by the x-values
- * <p> 2. yi + yj + |xi - xj| == yi + xi + yj- xj when xi > xj; first in first out.
+ * <p> 2. yi + yj + |xi - xj| == yi + yj + xj - xi when xi > xj; first in first out.
  * <p> 3. when to calculate the equation? xi - xj <= k so when > k, we keep polling
  */
 
