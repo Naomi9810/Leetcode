@@ -1,0 +1,16 @@
+summary
+* when to use BFS (queue)
+shortest path
+level-order traverse
+
+* when to use DFS (backtracking)
+path exploration, all possible solutions
+
+* when to use DP
+overlapping subproblems
+
+* when to use greedy
+local optimal choices lead to a global solution
+
+
+

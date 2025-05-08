@@ -14,16 +14,31 @@ package com.leetcode.greedy;
 
 public class LC_0045_Jump_Game_II {
     public int jump(int[] nums) {
-        int step = 0, lastPos = 0, max = 0;
-        for (int i = 0; i < nums.length - 1; i++) {
-            // pay attention to i < len-1 only need to get to len-1 pos
-            max = Math.max(nums[i] + i, max); // first the max far we can reach
-            if (i == lastPos) {
-                // when we already reach the last max, we need to jump
-                step++;
-                lastPos = max;
+        int farthest = 0, jump = 0, len = nums.length;
+        int farthestWithoutJump = 0;
+        // corner case
+        if (nums.length == 1) return 0;
+
+
+        for (int i = 0; i < len; i++) {
+            if (i + nums[i] > farthest) {
+                farthest = i + nums[i];
+            }
+            // only jump when i == farthest
+            if (i == farthestWithoutJump) {
+                jump++;
+                farthestWithoutJump = farthest;
+                if (farthestWithoutJump >= len - 1) {
+                    return jump;
+                }
             }
         }
-        return step;
+        return jump;
+        // eg
+        // nums =
+        //[2,3,1,1,4]
+        // i = 0, farthest = 2, jump = 1, farthestWithoutJump = 2
+        // i = 1, farthest = 4, jump = 1, farthestWithoutJump = 2
+        // i = 2, farthest = 4, jump = 2, farthestWithoutJump = 4
     }
 }

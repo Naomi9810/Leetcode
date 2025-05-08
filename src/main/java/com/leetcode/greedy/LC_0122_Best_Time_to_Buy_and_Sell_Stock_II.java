@@ -8,6 +8,7 @@
  * <p> 1. each day you can have 3 options, buy, do nothing and sell
  * <p> 2. if buy we have int pre = prices[i] and you can't buy util you sell it.
  * <p> 3. using greedy to calculate only need to look the pre
+
  */
 
 package com.leetcode.greedy;

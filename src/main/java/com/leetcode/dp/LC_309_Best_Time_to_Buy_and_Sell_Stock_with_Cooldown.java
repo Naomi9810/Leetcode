@@ -17,19 +17,23 @@ package com.leetcode.dp;
 
 public class LC_309_Best_Time_to_Buy_and_Sell_Stock_with_Cooldown {
     public int maxProfit(int[] prices) {
+        // corner case
         if (prices == null || prices.length == 0) return 0;
         int len = prices.length;
         if (len < 2) return 0;
-        int[] buy = new int[len];
-        int[] sell = new int[len];
-        buy[0] = -prices[0]; //  can only buy at day 1
-        buy[1] = -Math.min(prices[0], prices[1]); //  choose buy day 1 or 2 whichever is cheaper
-        sell[1] = Math.max(0, prices[1] - prices[0]);// possible max profit in day 2
+
+        // buy, cool down, sell
+        int[] buy = new int[len]; // max profit day i to buy
+        int[] sell = new int[len]; // max profit day i to sell
+
+        buy[0] = -prices[0];
+        buy[1] = Math.max(buy[0], -prices[1]);
+        sell[0] = 0;
+        sell[1] = Math.max(sell[0], prices[1] - prices[0]);
 
         for (int i = 2; i < len; i++) {
-            buy[i] = Math.max(buy[i - 1], sell[i - 2] - prices[i]); // wait or buy at i, i-1 is cool down
-            sell[i] = Math.max(sell[i - 1], prices[i] + buy[i - 1]);
-            // wait or sell what bought in i-1, note we can do buy-sell so i is sell, i-1 is buy
+            buy[i] = Math.max(buy[i-1], sell[i-2] - prices[i]); // if I buy today, last day must be cool down, i-2 is sell
+            sell[i] = Math.max(sell[i-1], buy[i-1] + prices[i]); // buy last time
         }
         return sell[len-1];
     }
