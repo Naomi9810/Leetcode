@@ -19,59 +19,68 @@ import java.util.List;
 
 public class LC_0068_Text_Justification {
     public List<String> fullJustify(String[] words, int maxWidth) {
+        // greedy, if we can fit, otherwise add a new line
+
         List<String> res = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        int i = 0, wordLen = 0, wordCount = 0;
+        int space = 0;
 
-        while (i < words.length) {
-            if (sb.length() + words[i].length() <= maxWidth) {
-                wordLen += words[i].length();
-                wordCount++;
-                sb.append(words[i++]).append(" "); // word 加一个空格的
+        for (int i = 0; i < words.length; i++) {
+            if (sb.isEmpty()) {
+                sb.append(words[i]);
+            } else if (sb.length() + words[i].length() + 1 <= maxWidth) {
+                sb.append(" ").append(words[i]);
+                space++;
             } else {
-                String line = genLine(sb, wordCount, wordLen, maxWidth);
-                res.add(line); // 加完之后 reset
-                sb.setLength(0);
-                wordLen = 0;
-                wordCount = 0;
+                // exceed
+                res.add(justify(sb.toString(), space, maxWidth));
+                sb = new StringBuilder();
+                space = 0;
+                i--;
             }
+        }
 
+        if (!sb.isEmpty()) {
+            // last line
+            res.add(justify(sb.toString(),0,maxWidth));
         }
-        // last line
-        while (sb.length() != 0 && sb.length() <= maxWidth) {
-            sb.append(" ");
-        }
-        sb.setLength(maxWidth);
-        res.add(sb.toString());
+
         return res;
-
     }
 
-    private String genLine(StringBuilder sb, int wordCount, int wordLen, int maxWidth) {
-        if (wordCount == 1) {
-            while (sb.length() <= maxWidth) {
-                sb.append(" ");
-            }
-            sb.setLength(maxWidth);
-            return sb.toString();
+    private String justify(String str, int space, int maxWidth) {
+        if (str.length() == maxWidth) {
+            return str;
         }
 
-        int spaceCount = (maxWidth - wordLen) / (wordCount-1);
-        int extraSpace =  (maxWidth - wordLen) % (wordCount-1);
-        String space = " ".repeat(spaceCount);
-        String[] spaceArr = new String[wordCount-1];
-        Arrays.fill(spaceArr, space);
-        for (int i = 0; i < extraSpace; i++) {
-            spaceArr[i] += " ";
+        int needSpace = maxWidth - str.length();
+        // one word or last line
+        if (space == 0) {
+            return str+ " ".repeat(needSpace);
         }
-        String[] splited = sb.toString().split(" ");
-        StringBuilder line = new StringBuilder();
-        for (int i = 0; i < splited.length; i++) {
-            line.append(splited[i]);
-            if (i < spaceArr.length) {
-                line.append(spaceArr[i]);
+
+        String[] spaceStr = new String[space];
+        Arrays.fill(spaceStr, " ");
+
+        // need add spaces
+        int i = 0;
+        while (needSpace-- > 0) {
+            spaceStr[i] += " ";
+            if (++i == space) {
+                i=0;
             }
         }
-        return line.toString();
+
+        StringBuilder sb = new StringBuilder();
+
+        String[] parts = str.split(" ");
+        for (int j = 0; j < parts.length; j++) {
+            sb.append(parts[j]);
+            if (j < spaceStr.length) {
+                sb.append(spaceStr[j]);
+            }
+        }
+
+        return sb.toString();
     }
 }

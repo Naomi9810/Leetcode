@@ -17,18 +17,18 @@ public class LC_0238_Product_of_Array_Except_Self {
         int len = nums.length;
         int[] res = new int[len];
 
-        int left = 1;
+        int product = 1;
         for (int i = 0; i < len; i++) {
-            res[i] = left;
-            left *= nums[i];
+            res[i] =  product;
+            // first assign the product, then do the * , in that way, it will pass to the nex number
+            product *= nums[i];
         }
 
-        int right = 1;
-        for (int i = len - 1; i >= 0; i--) {
-            res[i] *= right;
-            right *= nums[i];
+        product = 1;
+        for (int j = len-1; j >=0 ;j--) {
+            res[j] *=  product; // make sure this is *= we don't want to lose the previous product
+            product *= nums[j];
         }
-
         return res;
     }
 }

@@ -15,33 +15,39 @@ package com.leetcode.design;
 import java.util.*;
 
 public class LC_0380_Insert_Delete_GetRandom_O1 {
-    // val, index
-    Map<Integer, Integer> index;
+    Map<Integer, Integer> value2Idx;
     List<Integer> list;
     Random rand = new Random();
 
     public void RandomizedSet() {
-        index = new HashMap<>();
-        list = new ArrayList<>();
+        value2Idx = new HashMap<>();
+        list = new ArrayList<>(); // idx - value
+
     }
 
     public boolean insert(int val) {
-        if(index.containsKey(val)) return false;
+        if (value2Idx.containsKey(val)) return false;
+
+        value2Idx.put(val, list.size());
         list.add(val);
-        index.put(val, list.size()-1);
+
         return true;
     }
 
     public boolean remove(int val) {
-        if(!index.containsKey(val)) return false;
+        if (!value2Idx.containsKey(val)) return false;
 
-        int indexRemove = index.get(val);
-        int last = list.get(list.size()-1);  // remove the last one
+        // no matter what value it is, swap it with the last item in the list, so that we remove the last item
+        // to main the idx
 
-        list.set(indexRemove, last);
-        index.put(last, indexRemove);
-        index.remove(val);
-        list.remove(list.size()-1);
+        int idx = value2Idx.get(val);
+        int lastVal = list.getLast();
+        list.set(idx, lastVal);
+        list.removeLast();
+
+        value2Idx.put(lastVal, idx); // update the idx
+        value2Idx.remove(val);
+
         return true;
     }
 
