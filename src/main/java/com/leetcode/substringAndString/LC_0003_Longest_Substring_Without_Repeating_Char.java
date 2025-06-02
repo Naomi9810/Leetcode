@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class LC_0003_Longest_Substring_Without_Repeating_Char {
     public int lengthOfLongestSubstring(String s) {
-        if (s == null || s.length() == 0) return 0;
+        if (s == null || s.isEmpty()) return 0;
         Set<Character> set = new HashSet<>();
         int i = 0, res = 0;
 
