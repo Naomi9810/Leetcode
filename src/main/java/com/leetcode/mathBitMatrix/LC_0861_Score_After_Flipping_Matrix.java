@@ -12,7 +12,7 @@
 
 package com.leetcode.mathBitMatrix;
 
-public class LC_861_Score_After_Flipping_Matrix {
+public class LC_0861_Score_After_Flipping_Matrix {
     public int matrixScore(int[][] grid) {
         int row = grid.length, col = grid[0].length;
         // first col making all 1

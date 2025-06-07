@@ -17,24 +17,22 @@ import java.util.Set;
 
 public class LC_0128_Longest_Consecutive_Sequence {
     public int longestConsecutive(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
         Set<Integer> set = new HashSet<>();
-
-        for (int n: nums) {
+        for (int n : nums) {
             set.add(n);
         }
-        int res = 0;
 
-        for (int n: set) {
-            if (!set.contains(n-1)) { // 关键不能double count 只从最小的开始
-                int cur = n;
+        int maxLen = 1;
+        for (int n : set) {
+            if (!set.contains(n - 1)) { // 关键不能double count 只从最小的开始
                 int len = 1;
-                while (set.contains(cur+1)) {
-                    cur++;
+                while (set.contains(++n)) {
                     len++;
+                    maxLen = Math.max(len, maxLen);
                 }
-                res = Math.max(res, len);
             }
         }
-        return res;
+        return maxLen;
     }
 }

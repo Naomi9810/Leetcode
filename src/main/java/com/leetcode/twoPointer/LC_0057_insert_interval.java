@@ -17,30 +17,31 @@ import java.util.List;
 
 public class LC_0057_insert_interval {
     public int[][] insert(int[][] intervals, int[] newInterval) {
-        if (intervals == null || intervals.length == 0) return new int[][] {newInterval};
-        if (newInterval == null || newInterval.length == 0) return intervals;
+        List<int[]> result = new ArrayList<>();
 
-        List<int[]> res = new ArrayList<>();
-        // add all before newInterval
         int i = 0;
-        int start = newInterval[0], end = newInterval[1]; // two variable as new interval start
+        int n = intervals.length;
 
-        while (i < intervals.length && intervals[i][1] < start) {
-            res.add(intervals[i++]);
+        // intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]
+
+        // 1. Add all intervals ending before newInterval starts
+        while (i < n && intervals[i][1] < newInterval[0]) {
+            result.add(intervals[i++]);
         }
 
-        while (i < intervals.length && intervals[i][0] <= end) {
-            //merge
-            start = Math.min(intervals[i][0], start);
-            end = Math.max(intervals[i][1], end);
+        // 2. Merge all overlapping intervals with newInterval
+        while (i < n && intervals[i][0] <= newInterval[1]) {
+            newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+            newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
             i++;
         }
-        res.add(new int[] {start, end});
+        result.add(newInterval); // Add the merged interval
 
-        while (i < intervals.length) {
-            res.add(intervals[i++]);
+        // 3. Add the rest of the intervals
+        while (i < n) {
+            result.add(intervals[i++]);
         }
 
-        return res.toArray(new int[res.size()][]);
+        return result.toArray(new int[result.size()][]);
     }
 }
