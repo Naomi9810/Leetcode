@@ -1,8 +1,8 @@
 /**
  * Created by Sijia on 2/28/22
- * Time Complexity:
+ * Time Complexity: O(N)
  * <p>
- * Space Complexity:
+ * Space Complexity: O(1) - res
  * <p>
  * Hints:
  * <p> 1.

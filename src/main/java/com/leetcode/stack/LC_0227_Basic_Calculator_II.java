@@ -5,14 +5,14 @@
  * Space Complexity:
  * <p>
  * Hints: https://leetcode.com/problems/basic-calculator-ii/discuss/371392/Java-solution-with-explanation
- * <p> 1.
- * <p> 2.
- * <p> 3.
- */
+ * pre 暂时保存「当前还不能加进总结果 res 的值」。
+ * 当你遇到 + 或 - 时，表示之前的 pre 终于可以安全地加到 res 了，因为它不会再被 * / 修改。
+ * * 和 / 操作都直接作用在 pre 上，确保优先计算。
+ */  
 
 package com.leetcode.stack;
 
-public class LC_Basic_Calculator_II {
+public class LC_0227_Basic_Calculator_II {
     public int calculate(String s) {
 //        if (s == null || s.length() == 0) return 0;
 //

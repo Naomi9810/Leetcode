@@ -1,0 +1,39 @@
+package com.leetcode.stack;
+
+import java.util.Stack;
+
+public class LC_0224_Basic_Calculator {
+    public int calculate(String s) {
+        Stack<Integer> stack = new Stack<Integer>();
+
+        int res = 0, num = 0, sign = 1;
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (Character.isDigit(c)) {
+                num = 10* num + (c - '0');
+            } else if (c == '+' || c == '-') {
+                // calculate the res
+                res += sign * num;
+                num = 0;
+                sign = c == '+'? 1: -1;
+            } else if (c == '(') {
+                // push the res and sign
+                stack.push (res);
+                stack.push (sign);
+                // reset
+                sign = 1;
+                res = 0;
+            } else if (c == ')') {
+                // calculate the res
+                res += sign * num;
+                num = 0;
+                res *= stack.pop(); // sign
+                res += stack.pop();
+            }
+        }
+        if (num != 0) res += sign* num;
+        return res;
+
+    }
+}

@@ -14,26 +14,30 @@ import java.util.*;
 
 public class LC_0071_Simplify_Path {
     public String simplifyPath(String path) {
-        if (path == null || path.length() <= 1) return "/";
-        Deque<String> stack = new ArrayDeque<>();
+        if (path == null || path.length() == 1)
+            return path;
 
-        Set<String> skip = new HashSet<>(Arrays.asList("..", ".", ""));
         String[] splited = path.split("/");
-        for (String p : splited) {
-            if ("..".equals(p) && !stack.isEmpty()) {
-                stack.pollLast();
-            } else if (!skip.contains(p)) {
-                stack.addLast(p);
+        Deque<String> deque = new ArrayDeque<>();
+
+        for (String str : splited) {
+            if (str.isEmpty() || str.equals(".")) {
+                continue;
+            }
+            if (str.equals("..")) {
+                if (!deque.isEmpty()) {
+                    deque.pop();
+                }
+            } else {
+                deque.push(str);
             }
         }
 
         StringBuilder sb = new StringBuilder();
-        while (!stack.isEmpty()) {
-            String p = stack.pollFirst();
-            sb.append("/");
-            sb.append(p);
+        while (!deque.isEmpty()) {
+            sb.append("/").append(deque.removeLast());
         }
-        return sb.length() == 0 ? "/" : sb.toString();
 
+        return sb.isEmpty() ? "/" : sb.toString();
     }
 }
