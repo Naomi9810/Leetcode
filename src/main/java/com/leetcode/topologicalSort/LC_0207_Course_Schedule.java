@@ -16,45 +16,35 @@ import java.util.*;
 
 public class LC_0207_Course_Schedule {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
+        Map<Integer, List<Integer>> graph = new HashMap<>();
 
-
-        int[] degree = new int[numCourses];
-        Map<Integer, List<Integer>> map = new HashMap<>();
-        for (int[] course : prerequisites) {
-            int pre = course[1];
-            int cur = course[0];
-            degree[cur]++;
-            map.putIfAbsent(pre, new ArrayList<>());
-            map.get(pre).add(cur);
+        for (int[] pair : prerequisites) {
+            graph.putIfAbsent(pair[1], new ArrayList<>());
+            graph.get(pair[1]).add(pair[0]);
         }
 
-        Queue<Integer> que = new ArrayDeque<>();
+        Set<Integer> visiting = new HashSet<>();
+        Set<Integer> visited = new HashSet<>();
 
-        for (int i = 0; i < numCourses; i++) {
-            if (degree[i] == 0) {
-                que.offer(i);
-            }
+        for (int course = 0; course < numCourses; course++) {
+            if (!dfs(course, graph, visiting, visited)) return false;
         }
 
-        if (que.isEmpty()) return false;
+        return true;
+    }
 
-        int count = 0;
+    private boolean dfs(int course, Map<Integer, List<Integer>> graph, Set<Integer> visiting, Set<Integer> visited) {
+        if (visited.contains(course)) return true;
+        if (visiting.contains(course)) return false; // cycle found
 
-        while (!que.isEmpty()) {
-            int cur = que.poll();
-            count++;
-            List<Integer> courseList = map.get(cur);
-            map.remove(cur);// remove the visited
-            if (courseList != null) {
-                for (int next : courseList) {
-                    degree[next]--;
-                    if (degree[next] == 0) {
-                        que.offer(next);
-                    }
-                }
-            }
+        visiting.add(course);
+
+        for (int neighbor : graph.getOrDefault(course, new ArrayList<>())) {
+            if (!dfs(neighbor, graph, visiting, visited)) return false;
         }
-        return count == numCourses;
 
+        visiting.remove(course);
+        visited.add(course);
+        return true;
     }
 }

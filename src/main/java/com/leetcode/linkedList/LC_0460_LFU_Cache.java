@@ -100,12 +100,19 @@ class Node {
     int val;
     int key;
     int count;
+    Node random;
     Node pre, next;
 
     public Node(int key, int val) {
         this.key = key;
         this.val = val;
         this.count = 1;
+    }
+
+    public Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
     }
 
     public Node(){

@@ -18,21 +18,6 @@ public class LC_0098_Validate_BST {
 
     private Integer pre;
     public boolean isValidBST(TreeNode root) {
-//       return isBSTHelper(root, null, null);
-//     }
-
-//     private boolean isBSTHelper(TreeNode node, Integer min, Integer max) {
-//        if (node == null) return true;
-
-//         if (min != null && node.val <= min) {
-//             return false;
-//         }
-//         if (max != null && node.val >= max) {
-//             return false;
-//         }
-
-//         return isBSTHelper(node.left, min, node.val) &&  isBSTHelper(node.right, node.val, max);
-
         pre = null;
         return inOrder(root);
 

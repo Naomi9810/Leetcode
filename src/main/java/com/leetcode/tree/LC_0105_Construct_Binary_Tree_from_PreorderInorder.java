@@ -30,6 +30,7 @@ public class LC_0105_Construct_Binary_Tree_from_PreorderInorder {
             root_idx++;
         }
         int len = preorder.length;
+        // preorder length == inorder length
         TreeNode left = buildTree(Arrays.copyOfRange(preorder, 1, root_idx + 1), Arrays.copyOfRange(inorder, 0, root_idx));
         TreeNode right = buildTree(Arrays.copyOfRange(preorder, root_idx + 1, len), Arrays.copyOfRange(inorder, root_idx + 1, len));
 

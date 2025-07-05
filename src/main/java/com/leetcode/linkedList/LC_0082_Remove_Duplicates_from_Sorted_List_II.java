@@ -23,15 +23,19 @@ public class LC_0082_Remove_Duplicates_from_Sorted_List_II {
         ListNode pre = dummy;
 
         while (cur != null) {
-            if (cur.next != null && cur.next.val == cur.val) {  // if 先进入循环再 while 找到正确的node
-                while (cur.next != null && cur.next.val == cur.val) {
-                    cur = cur.next;
-                }
-                // keep 一个pre指针
-                pre.next = cur.next;
-            } else {
-                pre = cur;
+            // Move cur forward while next exists and values match
+            while (cur.next != null && cur.val == cur.next.val) {
+                cur = cur.next;
             }
+
+            // If no duplicates were found, just move pre forward
+            if (pre.next == cur) {
+                pre = pre.next;
+            } else {
+                // Skip the duplicate group
+                pre.next = cur.next;
+            }
+
             cur = cur.next;
         }
         return dummy.next;

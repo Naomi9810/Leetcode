@@ -45,20 +45,19 @@ public class LC_0146_LRU_Cache {
     }
 
     public void put(int key, int value) {
-        Node cur = cache.get(key);
-        if (cur != null) {
-            cur.value = value;
-            moveToHead(cur);
-        } else {
-            cur = new Node(key, value);
-            cache.put(key, cur);
-            addToHead(cur);
-            if (cache.size() > capacity) {
-                Node rubbish = tail.pre;
-                removeNode(rubbish);
-                cache.remove(rubbish.key);
-            }
+        if (cache.containsKey(key)) {
+            // update
+            Node trash = cache.get(key);
+            removeNode(trash);
+        } else if (cache.size() == capacity) {
+            // need to evict
+            cache.remove(tail.pre.key);
+            removeNode(tail.pre);
         }
+
+        Node node = new Node(key,value);
+        cache.put(key, node);
+        addToHead(node);
     }
 
     private void moveToHead(Node cur) {
