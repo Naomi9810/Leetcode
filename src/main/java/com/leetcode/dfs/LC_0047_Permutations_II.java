@@ -37,7 +37,7 @@ public class LC_0047_Permutations_II {
             path.add(nums[i]);
             dfs(nums, visited, path, res);
             visited[i] = false;
-            path.remove(path.size()-1);
+            path.removeLast();
             while (i+1 < nums.length && nums[i] == nums[i+1]) {
                 i++; // visited skip until valid
             }

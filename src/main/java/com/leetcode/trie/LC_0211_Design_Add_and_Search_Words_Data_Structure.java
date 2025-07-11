@@ -31,7 +31,7 @@ public class LC_0211_Design_Add_and_Search_Words_Data_Structure {
     }
 
     public boolean search(String word) {
-        if (word == null || word.length() == 0) {
+       if (word == null || word.isEmpty()) {
             return false;
         }
         return searchHelper(word.toCharArray(), 0, root);

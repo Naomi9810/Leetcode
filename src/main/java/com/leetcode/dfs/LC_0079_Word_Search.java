@@ -14,31 +14,35 @@ package com.leetcode.dfs;
 
 public class LC_0079_Word_Search {
     public boolean exist(char[][] board, String word) {
-        char[] charArr = word.toCharArray();
-        int row = board.length, col = board[0].length;
-        boolean[][] visited = new boolean[row][col];
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (dfs(board, visited, 0, i, j, charArr)) {
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (searchHelper(board, word, i, j, 0)) {
                     return true;
                 }
+
             }
         }
         return false;
     }
 
-    private boolean dfs(char[][] board, boolean[][] visited, int idx, int i, int j, char[] charArr) {
-        // base case:
-        if (idx == charArr.length) return true;
-        if (i < 0 || j < 0 || i >= board.length || j >= board[0].length) return false; // out of bound
-        if (board[i][j] != charArr[idx] || visited[i][j]) return false; // not meeting requirement
+    public boolean searchHelper(char[][] board, String word, int i, int j, int idx) {
+        if (idx == word.length()) return true;
 
-        visited[i][j] = true;
-        if (dfs(board, visited, idx + 1, i + 1, j, charArr)) return true;
-        if (dfs(board, visited, idx + 1, i - 1, j, charArr)) return true;
-        if (dfs(board, visited, idx + 1, i, j + 1, charArr)) return true;
-        if (dfs(board, visited, idx + 1, i, j - 1, charArr)) return true;
-        visited[i][j] = false;
-        return false;
+        int row = board.length;
+        int col = board[0].length;
+
+        if (i < 0 || j < 0 || i >= row || j >= col || board[i][j] == '#') return false; // visited or oob
+
+        if (board[i][j] != word.charAt(idx)) return false;
+
+        board[i][j] = '#';
+
+        boolean res = searchHelper(board, word, i + 1, j, idx + 1) ||
+                searchHelper(board, word, i - 1, j, idx + 1) ||
+                searchHelper(board, word, i, j + 1, idx + 1) ||
+                searchHelper(board, word, i, j - 1, idx + 1);
+        board[i][j] = word.charAt(idx);
+        return res;
     }
 }

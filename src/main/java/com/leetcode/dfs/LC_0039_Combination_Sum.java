@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
+// time complexity  O(n^(T/S))   T is the target, S is the smallest number in the candidates
+// space complexity O(T/S) + O(# of combinations)
 public class LC_0039_Combination_Sum {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         Arrays.sort(candidates);
