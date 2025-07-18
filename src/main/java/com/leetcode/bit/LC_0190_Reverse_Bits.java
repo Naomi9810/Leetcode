@@ -8,7 +8,7 @@ public class LC_0190_Reverse_Bits {
             result <<= 1;
             // Add the least significant bit of n to result
             result |= (n & 1);
-            // Shift n to the right to process the next bit
+            // Shift n to the right to process the next bit, everytime rightMost is the value
             n >>= 1;
         }
         return result;
