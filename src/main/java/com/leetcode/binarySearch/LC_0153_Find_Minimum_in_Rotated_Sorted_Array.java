@@ -14,27 +14,21 @@ package com.leetcode.binarySearch;
 
 public class LC_0153_Find_Minimum_in_Rotated_Sorted_Array {
     public int findMin(int[] nums) {
-        if (nums.length == 1) {
-            return nums[0];
-        }
+        int left = 0;
+        int right = nums.length - 1;
+        int min = nums[0];
 
-        int left = 0, right = nums.length - 1;
-        if (nums[left] < nums[right]) {
-            // not rotate
-            return nums[left];
-        }
-
-
-        while (left + 1 < right) {
-            // 第三种binary search的模板 用来找当前idx或者左右邻居
-            // https://leetcode.com/explore/learn/card/binary-search/135/template-iii/936/
-            int mid = left + (right - left)/2;
-            if (nums[left] > nums[mid]) {
-                right = mid;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            min = Math.min(min, nums[mid]);
+            // If the right half is sorted, min must be on the left or at mid
+            if (nums[mid] < nums[right]) {
+                right = mid - 1;
             } else {
-                left = mid;
+                // Left half is sorted, min must be on the right
+                left = mid + 1;
             }
         }
-        return Math.min(nums[left], nums[right]);
+        return min;
     }
 }

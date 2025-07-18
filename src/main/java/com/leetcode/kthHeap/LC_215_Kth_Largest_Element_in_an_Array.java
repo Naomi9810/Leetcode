@@ -26,11 +26,11 @@ public class LC_215_Kth_Largest_Element_in_an_Array {
         // quick sort method
 
         if (nums == null || nums.length == 0) return Integer.MAX_VALUE;
-        return findKthLargest(nums, 0, nums.length - 1, nums.length - k);
+        return findKthSmallest(nums, 0, nums.length - 1, nums.length - k);
         //  第k大 就是 第n+1-k 小 quick select idx n+1-k-1 = n-k
     }
 
-    public int findKthLargest(int[] nums, int start, int end, int k) {// quick select: kth smallest
+    public int findKthSmallest(int[] nums, int start, int end, int k) {// quick select: kth smallest
         if (start > end) return Integer.MAX_VALUE;
 
         int pivot = nums[end];// Take A[end] as the pivot,
@@ -45,9 +45,9 @@ public class LC_215_Kth_Largest_Element_in_an_Array {
         if (j == k)
             return nums[j];
         else if (j < k)// Check right part
-            return findKthLargest(nums, j + 1, end, k);
+            return findKthSmallest(nums, j + 1, end, k);
         else // Check left part
-            return findKthLargest(nums, start, j - 1, k);
+            return findKthSmallest(nums, start, j - 1, k);
     }
 
     public static void swap(int[] A, int i, int j) {
