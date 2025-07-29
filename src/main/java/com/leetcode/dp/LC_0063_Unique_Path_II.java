@@ -14,29 +14,27 @@ package com.leetcode.dp;
 
 public class LC_0063_Unique_Path_II {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        int m = obstacleGrid.length;
-        int n = obstacleGrid[0].length;
+        int row = obstacleGrid.length;
+        int col = obstacleGrid[0].length;
 
-        Integer[][] dp = new Integer[m][n];
-        return uniquePathsHelper(m-1, n-1, dp, obstacleGrid);
+        int[] dp = new int[col];
 
+        // Initialize the starting point
+        if (obstacleGrid[0][0] == 1 || obstacleGrid[row-1][col-1] == 1)return 0;
+        dp[0] = 1;
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (obstacleGrid[i][j] == 1) {
+                    dp[j] = 0; // No path through obstacle
+                } else if (j > 0) {
+                    dp[j] += dp[j - 1];
+                }
+            }
+        }
+
+        return dp[col - 1];
     }
 
-    public int uniquePathsHelper(int m, int n, Integer[][] dp, int[][] obstacleGrid) {
 
-        if (m < 0 || n < 0) return 0;
-        if (obstacleGrid[m][n] == 1) {
-            return 0;
-        }
-        if (dp[m][n] != null) {
-            return dp[m][n];
-        }
-        if (m == 0 && n == 0) {
-            dp[m][n] = 1;
-        } else {
-            dp[m][n] = uniquePathsHelper(m-1, n, dp,obstacleGrid) + uniquePathsHelper(m, n-1, dp, obstacleGrid);
-
-        }
-        return dp[m][n] ;
-    }
 }
